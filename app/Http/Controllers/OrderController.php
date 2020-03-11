@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderStatus;
 use Config\Constants;
 
 class OrderController extends Controller
@@ -26,94 +27,50 @@ class OrderController extends Controller
         return view('admin.order.index',  compact('Orders'));
     }
 
-    public function add()
-    {
-        return view('admin.artisan.category.add');
-    }
-
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'Name'              => 'required|min:1|max:64',
-            'Preview'           => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        ]);
-
-        
-        $previewImage = time() . '_' . request()->Preview->getClientOriginalName();
-        request()->Preview->move(public_path(Config('Constants.directory.artisan_categories')), $previewImage);
-
-        $user = auth()->user();
-        $ArtisanCategory = new ArtisanCategory();
-        $ArtisanCategory->Name             = $request->input('Name');
-        $ArtisanCategory->Description      = $request->input('Description');
-        $ArtisanCategory->PreviewImage     = Config('Constants.directory.artisan_categories') . '/' . $previewImage;
-        $ArtisanCategory->Submitter        = $user->id;
-        
-        $ArtisanCategory->save();
-        $request->session()->flash('message', 'Successfully created artisan category.');
-
-        return redirect()->route('admin.artisan.category.index');
-    }
 
     public function edit(Request $request)
     {
-        $ArtisanCategory = ArtisanCategory::find($request->input('ArtisanCategory'));
+        $Order = Order::find($request->input('Order'));
+        $OrderStatuses = OrderStatus::all();
 
-        return view('admin.artisan.category.edit', [ 
-            'ArtisanCategory'  => $ArtisanCategory,
-            ]);
+        return view('admin.order.edit', compact('Order', 'OrderStatuses'));
     }
 
     public function update(Request $request)
     {
-        $ArtisanCategory = ArtisanCategory::find($request->input('ArtisanCategory'));
+        $Order = Order::find($request->input('Order'));
+        $Order->Status = $request->input('Status');
+       
+        $Order->save();
+        $request->session()->flash('message', 'Successfully updated Order.');
 
-        $ArtisanCategory->Name           = $request->input('Name');
-        $ArtisanCategory->Description      = $request->input('Description');
-
-
-        if(!is_null($request->input('Preview')))
-        {
-            $previewImage = request()->Preview->getClientOriginalName();
-            request()->Preview->move(public_path(Config('Constants.directory.artisan_categories'), $previewImage));
-
-            $filepath = public_path($ArtisanCategory->Preview);
-            if(\File::exists($filepath)) \File::delete($filepath);
-
-            $ArtisanCategory->Preview         = Config('Constants.directory.artisan_categories') . '/' . $previewImage;
-        }
-
-        
-        $ArtisanCategory->Submitter        = $auth()->user()->id;
-
-        $ArtisanCategory->save();
-        $request->session()->flash('message', 'Successfully updated artisan category.');
-
-        return redirect()->route('admin.artisan.category.index');
+        return redirect()->route('admin.order.index');
     }
 
     public function delete(Request $request)
     {
-        $ArtisanCategory = ArtisanCategory::find($request->input("ArtisanCategory"));
+        $Order = Order::find($request->input("Order"));
+        $Order->delete();
+
         
-        $ArtisanProducts = ArtisanProduct::where('ArtisanCategory', '=', $request->input('ArtisanCategory'));
+        // $ArtisanProducts = ArtisanProduct::where('ArtisanCategory', '=', $request->input('ArtisanCategory'));
 
-        foreach($ArtisanProducts as $product){
+        // foreach($ArtisanProducts as $product){
 
-            $filepath = public_path($product->Preview);
-            if(\File::exists($filepath)) \File::delete($filepath);
+        //     $filepath = public_path($product->Preview);
+        //     if(\File::exists($filepath)) \File::delete($filepath);
 
-            $product->delete();
-        }
+        //     $product->delete();
+        // }
 
-        if($ArtisanCategory){
+        // if($ArtisanCategory){
             
-            $filepath = public_path($ArtisanCategory->Preview);
-            if(\File::exists($filepath)) \File::delete($filepath);
+        //     $filepath = public_path($ArtisanCategory->Preview);
+        //     if(\File::exists($filepath)) \File::delete($filepath);
 
-            $ArtisanCategory->delete();
-        }
+        //     $ArtisanCategory->delete();
+        // }
         
-        return redirect()->route('admin.artisan.category.index');
+        return redirect()->route('admin.order.index');
     }
 }

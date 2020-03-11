@@ -88,13 +88,37 @@
 
                                                     @foreach($Orders as $item)
                                                     <tr>
-                                                        <td>{{ $item->UserId }}</td>
+                                                        <td>{{ $item->User->name }}</td>
                                                         <td>{{ $item->Date }}</td>
                                                         <td>{{ $item->TotalPrice }}</td>
                                                         <td>{{ $item->PromotionCode }}</td>
                                                         <td>{{ $item->Count }}</td>
-                                                        <td>{{ $item->Address }}</td>
-                                                        <td>{{ $item->OrderStatus }}</td>
+
+                                                        @if($item->AddressIndex != 0)
+                                                            <td> {{ $item->Address->Alias }} </td>
+                                                        @else
+                                                            <td></td>
+                                                        @endif
+
+                                                        <td>
+                                                        
+                                                        @if($item->Status != 0) 
+                                                            @if($item->Status == 1)
+                                                                <a href="" class="badge badge-secondary">
+                                                            @elseif($item->Status == 2)
+                                                                <a href="" class="badge badge-warning">
+                                                            @elseif($item->Status == 3)
+                                                                <a href="" class="badge badge-primary">
+                                                            @elseif($item->Status == 4)
+                                                                <a href="" class="badge badge-success">
+                                                            @endif
+                                                            
+                                                            {{ $item->OrderStatus->Name }}
+
+                                                            </a>
+                                                        @endif
+
+                                                        </td>
 
                                                         <td class="text-center">
                                                             <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">

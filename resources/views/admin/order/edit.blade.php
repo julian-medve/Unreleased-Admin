@@ -21,7 +21,7 @@
                                 </div>
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="feather icon-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.custompattern.index') }}">Custom Patterns</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.order.index') }}">Order</a></li>
                                     <li class="breadcrumb-item"><a>Edit</a></li>
                                 </ul>
                             </div>
@@ -36,7 +36,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="alert alert-primary" role="alert">
-                                    <p>Edit Custom Pattern.</p>
+                                    <p>Edit Order.</p>
                                 </div>
 
                                 @if ($message = Session::get('success'))
@@ -65,127 +65,81 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Edit Custom Pattern</h5>
+                                        <h5>Edit Order</h5>
                                     </div>
                                     <div class="card-block">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form method="POST" action="{{ route('admin.custompattern.update') }}" enctype="multipart/form-data">
+                                                <form method="POST" action="{{ route('admin.order.update') }}" enctype="multipart/form-data">
                                                     @csrf
 
-                                                    <input type="hidden" name="CustomPattern" value=" {{ $CustomPattern->Id }}"/>
+                                                    <input type="hidden" name="Order" value=" {{ $Order->Id }}"/>
 
                                                     <div class="form-group row">
-                                                        <label for="Name" class="col-sm-3 col-form-label">Name</label>
+                                                        <label for="Customer" class="col-sm-3 col-form-label">Customer</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="Name" id="Name" placeholder="Name" value="{{ $CustomPattern->Name }}" required autofocus>
+                                                            <input class="form-control" name="Customer" id="Customer" placeholder="Customer" value="{{ $Order->User->name }}" readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label for="Preview" class="col-sm-3 col-form-label">Preview Image</label>
+                                                        <label for="Date" class="col-sm-3 col-form-label">Date</label>
                                                         <div class="col-sm-9">
-                                                            <div class="col-sm-6">
-                                                                <img class="img-fluid" src="{{ asset($CustomPattern->Preview) }}" >
-                                                            </div>
+                                                            <input class="form-control" name="Date" id="Date" placeholder="Date" value="{{ $Order->Date }}" readonly>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label for="preview_upload" class="col-sm-3 col-form-label"></label>
+                                                        <label for="TotalPrice" class="col-sm-3 col-form-label">TotalPrice</label>
                                                         <div class="col-sm-9">
-                                                            <input type="file" class="form-control" name="Preview" id="preview_upload">
+                                                            <input class="form-control" name="TotalPrice" id="TotalPrice" placeholder="TotalPrice" value="{{ $Order->TotalPrice }}" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="PromotionCode" class="col-sm-3 col-form-label">PromotionCode</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="PromotionCode" id="PromotionCode" placeholder="PromotionCode" value="{{ $Order->PromotionCode }}" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Count" class="col-sm-3 col-form-label">Count</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="Count" id="Count" placeholder="Count" value="{{ $Order->Count }}" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Address" class="col-sm-3 col-form-label">Address</label>
+                                                        <div class="col-sm-9">
+                                                            @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="Count" id="Count" placeholder="Count" value="{{ $Order->Address->Alias }}" readonly>
+                                                            @endif
                                                         </div>
                                                     </div>
 
                                                     
-                                                    <div class="form-group row" id="ApproveArea">
-                                                        <label for="Approve" class="col-sm-3 col-form-label">Approve</label>
-                                                        <div class="col-sm-9">
-                                                            <div class="switch switch-primary d-inline s-r-8">
-
-                                                                @if(Auth::user()->role != Config('Constants.userrole.submitter') && $CustomPattern->Approved)
-                                                                    <input type="checkbox" name="Approve" id="Approve" checked>
-                                                                @elseif(Auth::user()->role != Config('Constants.userrole.submitter') && $CustomPattern->Approved == false)
-                                                                    <input type="checkbox" name="Approve" id="Approve">
-                                                                @elseif(Auth::user()->role == Config('Constants.userrole.submitter') && $CustomPattern->Approved)
-                                                                    <input type="checkbox" name="Approve" id="Approve" checked disabled>
-                                                                @else 
-                                                                    <input type="checkbox" name="Approve" id="Approve" disabled>
-                                                                @endif
-                                                                <label for="Approve" class="cr"></label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row" id="RejectDescriptionArea">
-                                                        <label for="RejectDescription" class="col-sm-3 col-form-label">Reject Description</label>
-                                                        <div class="col-sm-9">
-                                                            <textarea class="form-control max-textarea" maxlength="255" rows="4" name="RejectDescription" id="RejectDescription" placeholder="Reject Description" value="{{ $CustomPattern->RejectDescription }}" autofocus></textarea>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row" id="TypeCategoryArea">
-                                                        <label for="TypeCategory" class="col-sm-3 col-form-label">Type Category</label>
-                                                        <div class="col-sm-9">
-
-                                                                <select class="form-control" name="TypeCategory" id="TypeCategory">    
-                                                          
-                                                                <option value>Select Type category...</option>
-
-                                                                @foreach ($TypeCategories as $item)
-                                                                    @if($CustomPattern->TypeCategory == $item->Id)
-                                                                        <option value="{{ $item->Id }}" selected>{{ $item->Name }}</option>
-                                                                    @else
-                                                                        <option value="{{ $item->Id }}">{{ $item->Name }}</option>
-                                                                    @endif
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group row" id="PriceCategoryArea">
-                                                        <label for="PriceCategory" class="col-sm-3 col-form-label">Price Category</label>
-                                                        <div class="col-sm-9">
-
-                                                                <select class="form-control" name="PriceCategory" id="PriceCategory">    
-                                                          
-                                                                <option value>Select Price category...</option>
-
-                                                                @foreach ($PriceCategories as $item)
-                                                                    @if($CustomPattern->PriceCategory == $item->Id)
-                                                                        <option value="{{ $item->Id }}" selected>{{ $item->Name }}</option>
-                                                                    @else
-                                                                        <option value="{{ $item->Id }}">{{ $item->Name }}</option>
-                                                                    @endif
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
-
-
-
                                                     <div class="form-group row">
-                                                        <label for="Accept" class="col-sm-3 col-form-label">Accept</label>
+                                                        <label for="Status" class="col-sm-3 col-form-label">Status</label>
                                                         <div class="col-sm-9">
-                                                            <div class="switch switch-primary d-inline s-r-8">
 
-                                                                @if(Auth::user()->role == Config('Constants.userrole.submitter') && $CustomPattern->Accepted)
-                                                                    <input type="checkbox" id="Accept" name="Accept" checked >
-                                                                @elseif(Auth::user()->role == Config('Constants.userrole.submitter') && $CustomPattern->Accepted == false)
-                                                                    <input type="checkbox" id="Accept" name="Accept" >
-                                                                @elseif(Auth::user()->role != Config('Constants.userrole.submitter') && $CustomPattern->Accepted)
-                                                                    <input type="checkbox" id="Accept" name="Accept" checked disabled>
-                                                                @else
-                                                                    <input type="checkbox" id="Accept" name="Accept" disabled>
-                                                                @endif
+                                                                <select class="form-control" name="Status" id="Status">    
+                                                          
+                                                                <option value>Select Order Status...</option>
 
-                                                                <label for="Accept" class="cr"></label>
-                                                            </div>
+                                                                @foreach ($OrderStatuses as $item)
+                                                                    @if($Order->Status == $item->Id)
+                                                                        <option value="{{ $item->Id }}" selected>{{ $item->Name }}</option>
+                                                                    @else
+                                                                        <option value="{{ $item->Id }}">{{ $item->Name }}</option>
+                                                                    @endif
+                                                                @endforeach
+
+                                                            </select>
                                                         </div>
                                                     </div>
+
 
                                                     <div class="form-group row justify-content-md-right">
                                                         <div class="col-sm-10">

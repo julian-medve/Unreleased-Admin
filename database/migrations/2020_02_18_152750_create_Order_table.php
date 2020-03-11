@@ -15,7 +15,10 @@ class CreateOrderTable extends Migration
     {
         Schema::create('Order', function (Blueprint $table) {
             $table->bigIncrements('Id');
+
             $table->bigInteger('UserId')->unsigned()->index();
+            // $table->foreign('UserId')->references('id')->on('users')->onDelete('cascade');
+
             $table->string('Date', 255);
             $table->bigInteger('TotalPrice');
             $table->string('PromotionCode')->nullable();

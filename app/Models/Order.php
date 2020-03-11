@@ -10,4 +10,19 @@ class Order extends Model
     protected $primaryKey= 'Id';
 
     public $timestamps = false; 
+
+    public function User()
+    {
+        return $this->belongsTo('App\User', 'UserId');
+    }
+
+    public function Address()
+    {
+        return $this->belongsTo('App\Models\Address', 'AddressIndex');
+    }
+
+    public function OrderStatus()
+    {
+        return $this->belongsTo('App\Models\OrderStatus', 'Status');
+    }
 }

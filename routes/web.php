@@ -110,6 +110,7 @@ Route::prefix('admin/custompattern')->group(function () {
 Route::prefix('admin/order')->group(function(){
     Route::get('/',             'OrderController@index')->name('admin.order.index');
     Route::get('/edit',         'OrderController@edit')->name('admin.order.edit');
+    Route::post('/update',       'OrderController@update')->name('admin.order.update');
     Route::get('/delete',       'OrderController@delete')->name('admin.order.delete');
 });
 
