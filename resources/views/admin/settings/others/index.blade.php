@@ -87,7 +87,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group row">
+                                                    <!-- <div class="form-group row">
                                                         <label for="Custom_Color_Price" class="col-sm-3 col-form-label">Custom Color Price</label>
                                                         <div class="col-sm-9">    
                                                             <input class="form-control" name="Custom_Color_Price" id="Custom_Color_Price" placeholder="Custom Color Price" value="{{ $Custom_Color_Price ?? '' }}" autofocus>
@@ -99,7 +99,7 @@
                                                         <div class="col-sm-9">    
                                                             <input class="form-control" name="Custom_Text_Price" id="Custom_Text_Price" placeholder="Custom Text Price" value="{{ $Custom_Text_Price ?? '' }}" autofocus>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <div class="form-group row justify-content-md-right">
                                                         <div class="col-sm-10">

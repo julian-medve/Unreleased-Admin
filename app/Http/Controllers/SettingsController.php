@@ -26,19 +26,22 @@ class SettingsController extends Controller
             $Faq = $Faq['Value'];
 
 
-        $Custom_Color_Price = Settings::where('Name', 'Custom_Color_Price')->get()->first();
+        // $Custom_Color_Price = Settings::where('Name', 'Custom_Color_Price')->get()->first();
         
-        if(!is_null($Custom_Color_Price) && !empty($Custom_Color_Price))
-            $Custom_Color_Price = $Custom_Color_Price['Value'];
+        // if(!is_null($Custom_Color_Price) && !empty($Custom_Color_Price))
+        //     $Custom_Color_Price = $Custom_Color_Price['Value'];
 
 
-        $Custom_Text_Price = Settings::where('Name', 'Custom_Text_Price')->get()->first();
+        // $Custom_Text_Price = Settings::where('Name', 'Custom_Text_Price')->get()->first();
         
-        if(!is_null($Custom_Text_Price) && !empty($Custom_Text_Price))
-            $Custom_Text_Price = $Custom_Text_Price['Value'];
+        // if(!is_null($Custom_Text_Price) && !empty($Custom_Text_Price))
+        //     $Custom_Text_Price = $Custom_Text_Price['Value'];
 
-        return view('admin.settings.others.index', compact('Faq', 'Custom_Color_Price', 'Custom_Text_Price'));
+        // return view('admin.settings.others.index', compact('Faq', 'Custom_Color_Price', 'Custom_Text_Price'));
+
+        return view('admin.settings.others.index', compact('Faq'));
     }
+
 
     public function update(Request $request)
     {
@@ -57,29 +60,29 @@ class SettingsController extends Controller
 
         // Save Custom Color Price
 
-        $Custom_Color_Price = Settings::where('Name', 'Custom_Color_Price')->get()->first();
+        // $Custom_Color_Price = Settings::where('Name', 'Custom_Color_Price')->get()->first();
 
-        if(empty($Custom_Color_Price)){
+        // if(empty($Custom_Color_Price)){
 
-            $Custom_Color_Price = new Settings();
-            $Custom_Color_Price->Name       = 'Custom_Color_Price';
-        }
-        $Custom_Color_Price->Value      = $request->input('Custom_Color_Price');
-        $Custom_Color_Price->save();
+        //     $Custom_Color_Price = new Settings();
+        //     $Custom_Color_Price->Name       = 'Custom_Color_Price';
+        // }
+        // $Custom_Color_Price->Value      = $request->input('Custom_Color_Price');
+        // $Custom_Color_Price->save();
 
 
 
         // Save Custom Text Price
 
-        $Custom_Text_Price = Settings::where('Name', 'Custom_Text_Price')->get()->first();
+        // $Custom_Text_Price = Settings::where('Name', 'Custom_Text_Price')->get()->first();
 
-        if(empty($Custom_Text_Price)){
+        // if(empty($Custom_Text_Price)){
 
-            $Custom_Text_Price = new Settings();
-            $Custom_Text_Price->Name       = 'Custom_Text_Price';
-        }
-        $Custom_Text_Price->Value      = $request->input('Custom_Text_Price');
-        $Custom_Text_Price->save();
+        //     $Custom_Text_Price = new Settings();
+        //     $Custom_Text_Price->Name       = 'Custom_Text_Price';
+        // }
+        // $Custom_Text_Price->Value      = $request->input('Custom_Text_Price');
+        // $Custom_Text_Price->save();
     
 
         $request->session()->flash('message', 'Successfully saved Faq URL.');
