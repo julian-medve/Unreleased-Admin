@@ -22,6 +22,10 @@ class CreateCustomProductTable extends Migration
             $table->string('Sizes', 255);
             $table->string('Preview', 255)->nullable();
             $table->string('Model', 255)->nullable();
+
+            $table->string('ColorPrice', 255)->nullable();
+            $table->string('TextPrice', 255)->nullable();
+
             $table->text('PartPrices')->nullable();
             $table->boolean('Status')->nullable();
             $table->bigInteger('Submitter')->unsigned()->index();

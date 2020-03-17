@@ -81,9 +81,11 @@
                                                         <th>SKU</th>
                                                         <th>Name</th>
                                                         <th>Description</th>
-                                                        <th>Price</th>
+                                                        <th>Base Price</th>
                                                         <th>Sizes</th>
                                                         <th>Preview</th>
+                                                        <th>Color Price</th>
+                                                        <th>Text Price</th>
                                                         <th>Status</th>
                                                         <th>Submitter</th>
                                                         <th>Action</th>
@@ -102,6 +104,9 @@
                                                         <td>
                                                             <img class="img-fluid" src="{{ asset($item->Preview) }}" width="80px">
                                                         </td>
+
+                                                        <td>{{ $item->ColorPrice }}</td>
+                                                        <td>{{ $item->TextPrice }}</td>
 
                                                         <td>
                                                             @if( $item->Status)

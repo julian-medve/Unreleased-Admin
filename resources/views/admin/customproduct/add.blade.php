@@ -109,7 +109,7 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label for="Price" class="col-sm-3 col-form-label">Price</label>
+                                                        <label for="Price" class="col-sm-3 col-form-label">Base Price</label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" name="Price" id="Price" placeholder="Price" readonly>
                                                         </div>
@@ -140,6 +140,23 @@
                                                     <div class="form-group row justify-content-sm-center">
                                                         <img class="img-fluid" src="{{ asset(Config('Constants.directory.custom_parts')) }}" width="500">
                                                     </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label for="ColorPrice" class="col-sm-3 col-form-label">Color Price</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="ColorPrice" id="ColorPrice" placeholder="Color Price" required>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label for="TextPrice" class="col-sm-3 col-form-label">Text Price</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="TextPrice" id="TextPrice" placeholder="TextPrice" required>
+                                                        </div>
+                                                    </div>
+
 
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">Part Prices</label>

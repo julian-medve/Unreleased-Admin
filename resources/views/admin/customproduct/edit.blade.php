@@ -126,6 +126,23 @@
                                                         <img class="img-fluid" src="{{ asset(Config('Constants.directory.custom_parts')) }}" width="500">
                                                     </div>
 
+
+                                                    <div class="form-group row">
+                                                        <label for="ColorPrice" class="col-sm-3 col-form-label">Color Price</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="ColorPrice" id="ColorPrice" placeholder="Color Price" value="{{ $CustomProduct->ColorPrice }}" required>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group row">
+                                                        <label for="TextPrice" class="col-sm-3 col-form-label">Text Price</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="TextPrice" id="TextPrice" placeholder="TextPrice"  value="{{ $CustomProduct->TextPrice }}" required>
+                                                        </div>
+                                                    </div>
+
+
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">Part Prices</label>
                                                     </div>

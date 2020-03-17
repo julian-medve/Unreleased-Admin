@@ -73,6 +73,8 @@ class CustomProductController extends Controller
             'Model'             => 'required',
             'Sizes'             => 'required',
             'Price'             => 'required',
+            'ColorPrice'        => 'required',
+            'TextPrice'         => 'required',
         ]);
 
         $PartPrices = "";
@@ -101,6 +103,10 @@ class CustomProductController extends Controller
         $CustomProduct->Sizes           = $request->input('Sizes');
         $CustomProduct->Preview         = Config('Constants.directory.custom_products') . '/' . $previewImage;
         $CustomProduct->Model           = Config('Constants.directory.custom_products') . '/' . $model;
+
+        $CustomProduct->ColorPrice      = $request->input('ColorPrice');
+        $CustomProduct->TextPrice       = $request->input('TextPrice');
+
         $CustomProduct->Status          = $request->input('Status') == 'on'? true : false;
         $CustomProduct->Submitter       = $user->id;
         $CustomProduct->PartPrices      = trim($PartPrices);
@@ -174,7 +180,9 @@ class CustomProductController extends Controller
             $CustomProduct->Model           = Config('Constants.directory.custom_products') . '/' . $model;
         }
 
-       
+        $CustomProduct->ColorPrice      = $request->input('ColorPrice');
+        $CustomProduct->TextPrice       = $request->input('TextPrice');
+
         $CustomProduct->Status          = $request->input('Status') == 'on'? true : false;
         $CustomProduct->PartPrices      = trim($PartPrices);
 
