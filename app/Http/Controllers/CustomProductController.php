@@ -199,7 +199,11 @@ class CustomProductController extends Controller
         
         if($CustomProduct){
             
-            $filepath = public_path($CustomProduct->preview);
+            $filepath = public_path($CustomProduct->Preview);
+            if(\File::exists($filepath)) \File::delete($filepath);
+
+
+            $filepath = public_path($CustomProduct->Model);
             if(\File::exists($filepath)) \File::delete($filepath);
 
             $CustomProduct->delete();
