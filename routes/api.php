@@ -29,7 +29,7 @@ Route::get('CustomPatterns',    'ApiController@CustomPatterns');
 
 Route::get('PriceCategories',   'ApiController@PriceCategories');
 
-Route::get('Faq',               'ApiController@Faq');
+Route::get('Settings',          'ApiController@Settings');
 
 Route::get('OrderStatuses',     'ApiController@OrderStatuses');
 

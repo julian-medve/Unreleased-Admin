@@ -26,7 +26,7 @@
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.index')}}"><i class="feather icon-home"></i></a></li>
                                     <li class="breadcrumb-item"><a >Settings</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.settings.faq.index') }}">Faq</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.settings.others.index') }}">Others</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,18 +77,27 @@
                                     <div class="card-block">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <form action="{{ route('admin.settings.faq.update') }}" method="POST" enctype="multipart/form-data">
+                                                <form action="{{ route('admin.settings.others.update') }}" method="POST" enctype="multipart/form-data">
+                                                    
                                                     @csrf
                                                     <div class="form-group row">
-                                                        <label for="Url" class="col-sm-3 col-form-label">Faq URL</label>
-                                                        <div class="col-sm-9">
-                                                            
-                                                            @if($faq)
-                                                                <input type="hidden" name="Id" value="{{ $faq->Id }}">
-                                                                <input class="form-control" name="Url" id="Url" placeholder="Url" value="{{ $faq->Url }}" required autofocus>
-                                                            @else
-                                                                <input class="form-control" name="Url" id="Url" placeholder="Url" required autofocus>
-                                                            @endif
+                                                        <label for="Faq" class="col-sm-3 col-form-label">Faq URL</label>
+                                                        <div class="col-sm-9">    
+                                                            <input class="form-control" name="Faq" id="Faq" placeholder="Faq" value="{{ $Faq ?? '' }}" autofocus>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Custom_Color_Price" class="col-sm-3 col-form-label">Custom Color Price</label>
+                                                        <div class="col-sm-9">    
+                                                            <input class="form-control" name="Custom_Color_Price" id="Custom_Color_Price" placeholder="Custom Color Price" value="{{ $Custom_Color_Price ?? '' }}" autofocus>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Custom_Text_Price" class="col-sm-3 col-form-label">Custom Text Price</label>
+                                                        <div class="col-sm-9">    
+                                                            <input class="form-control" name="Custom_Text_Price" id="Custom_Text_Price" placeholder="Custom Text Price" value="{{ $Custom_Text_Price ?? '' }}" autofocus>
                                                         </div>
                                                     </div>
 

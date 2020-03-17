@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Faq extends Model
+class Settings extends Model
 {
-    protected $table = 'Faq';
+    protected $table = 'Setting';
     protected $primaryKey= 'Id';
 
     public $timestamps = false; 

@@ -150,9 +150,9 @@ Route::prefix('admin/banner')->group(function () {
 
 // Manage Settings Menu
 
-Route::prefix('admin/settings/faq')->group(function () {  
-    Route::get('/',          'FaqController@index')->name('admin.settings.faq.index');
-    Route::post('/update',   'FaqController@update')->name('admin.settings.faq.update');
+Route::prefix('admin/settings/others')->group(function () {  
+    Route::get('/',          'SettingsController@index')->name('admin.settings.others.index');
+    Route::post('/update',   'SettingsController@update')->name('admin.settings.others.update');
 });
 
 

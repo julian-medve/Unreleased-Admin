@@ -71,13 +71,13 @@
                 <li data-username="Settings" class="nav-item {{ Request::is('admin/settings*') ? 'active pcoded-trigger' : '' }} pcoded-hasmenu">
                     <a class="nav-link"><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Settings</span></a>
                     <ul class="pcoded-submenu">
-                        
-                        @if(Auth()->user()->role == Config('Constants.userrole.super_admin'))
-                        <li class="{{ Request::is('admin/settings/faq*') ? 'active' : '' }}"><a href="{{ route('admin.settings.faq.index')}}" class="">FAQ</a></li>
-                        @endif
-
                         <li class="{{ Request::is('admin/settings/pricecategory*') ? 'active' : '' }}"><a href="{{ route('admin.settings.pricecategory.index')}}" class="">Price Category</a></li>
                         <li class="{{ Request::is('admin/settings/typecategory*') ? 'active' : '' }}"><a href="{{ route('admin.settings.typecategory.index')}}" class="">Type Category</a></li>
+                        
+                        @if(Auth()->user()->role == Config('Constants.userrole.super_admin'))
+                        <li class="{{ Request::is('admin/settings/others*') ? 'active' : '' }}"><a href="{{ route('admin.settings.others.index')}}" class="">Others</a></li>
+                        @endif
+                        
                     </ul>
                 </li>
             </ul>

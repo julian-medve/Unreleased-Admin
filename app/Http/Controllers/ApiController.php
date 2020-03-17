@@ -9,7 +9,7 @@ use App\Models\CustomPattern;
 use App\Models\ArtisanCategory;
 use App\Models\ArtisanProduct;
 use App\Models\PriceCategory;
-use App\Models\Faq;
+use App\Models\Settings;
 use App\Models\Cart;
 use App\Models\Address;
 use App\Models\Order;
@@ -173,10 +173,10 @@ class ApiController extends Controller
     }
 
 
-    public function Faq(){
+    public function Settings(){
 
-        $Faq = Faq::all()->first();
-        return $Faq;
+        $Settings = Settings::all();
+        return $Settings;
     }
 
 
