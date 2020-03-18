@@ -33,6 +33,8 @@ Route::get('Settings',          'ApiController@Settings');
 
 Route::get('OrderStatuses',     'ApiController@OrderStatuses');
 
+Route::get('ClearCache',        'ApiController@ClearCache');
+
 
 
 Route::post('Carts',            'ApiController@Carts');
@@ -59,8 +61,7 @@ Route::prefix('Order')->group(function () {
 });
 
 
-
-Route::get('GetSnapToken', function() {
+// Route::get('GetSnapToken', function() {
     
-    return $patterns;
-});
+//     return $patterns;
+// });

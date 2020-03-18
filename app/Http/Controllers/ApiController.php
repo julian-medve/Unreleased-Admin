@@ -14,9 +14,11 @@ use App\Models\Cart;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderStatus;
-use File;
-
 use App\User;
+
+use File;
+use Artisan;
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -34,7 +36,7 @@ class ApiController extends Controller
                 ->where('role', Config('Constants.userrole.customer'))
                 ->first();
     
-        if(!is_null($user) &&  Hash::check( $request->input('password'), $user['password'])){
+        if(!is_null($user) && Hash::check( $request->input('password'), $user['password'])){
 
             return $user;
         }
@@ -237,6 +239,7 @@ class ApiController extends Controller
         $Cart->ShoeCount        = intval($request->input('ShoeCount'));
         $Cart->OrderId          = null;
 
+        
         if($request->input('IsArtisan') == "False")
             $Cart->IsArtisan = false;
         else
@@ -397,5 +400,11 @@ class ApiController extends Controller
         $Order->save();
 
         return $Order;
+    }
+
+    public function ClearCache(Request $request){
+
+        $exitCode = Artisan::call('cache:clear');
+        return $exitCode;
     }
 }
