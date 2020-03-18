@@ -54,12 +54,23 @@ class ApiController extends Controller
         ]);
 
 
-        return User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role'  => Config('Constants.userrole.customer'),
-        ]);
+        $created = new User();
+
+        $created->name = $request->input('name');
+        $created->email = $request->input('email');
+        $created->password = Hash::make($request->input('password'));
+        $created->role = Config('Constants.userrole.customer');
+
+        $created->save();
+
+        return $created;
+        
+        // return User::create([
+        //     'name' => $request->input('name'),
+        //     'email' => $request->input('email'),
+        //     'password' => Hash::make($request->input('password')),
+        //     'role'  => Config('Constants.userrole.customer'),
+        // ]);
     }
 
 
