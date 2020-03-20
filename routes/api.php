@@ -29,6 +29,8 @@ Route::get('CustomPatterns',    'ApiController@CustomPatterns');
 
 Route::get('PriceCategories',   'ApiController@PriceCategories');
 
+Route::get('TypeCategories',    'ApiController@TypeCategories');
+
 Route::get('Settings',          'ApiController@Settings');
 
 Route::get('OrderStatuses',     'ApiController@OrderStatuses');
@@ -51,6 +53,10 @@ Route::prefix('Address')->group(function () {
     Route::post('/Add',         'ApiController@AddAddress');
     Route::post('/Update',      'ApiController@UpdateAddress');
     Route::post('/Delete',      'ApiController@DeleteAddress');
+
+    Route::get('/Provinces',    'ApiController@AllProvinces');
+    Route::post('/Cities',      'ApiController@Cities');
+    Route::post('/PostalCode',  'ApiController@PostalCode');
 });
 
 

@@ -9,11 +9,17 @@ use App\Models\CustomPattern;
 use App\Models\ArtisanCategory;
 use App\Models\ArtisanProduct;
 use App\Models\PriceCategory;
+use App\Models\TypeCategory;
 use App\Models\Settings;
 use App\Models\Cart;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderStatus;
+
+use App\Models\Province;
+use App\Models\City;
+use App\Models\PostalCode;
+
 use App\User;
 
 use File;
@@ -186,6 +192,13 @@ class ApiController extends Controller
     }
 
 
+    public function TypeCategories(){
+
+        $TypeCategories = TypeCategory::all();
+        return $TypeCategories;
+    }
+
+
     public function Settings(){
 
         $Settings = Settings::all();
@@ -205,7 +218,7 @@ class ApiController extends Controller
     /*****          Manage Cart API             *****/
     public function Carts(Request $request){
         
-        $Carts = Cart::where('UserId', $request->input('UserId'))->where('OrderId', null)->get();
+        $Carts = Cart::where('UserId', $request->input('UserId'))->get();
         
             
         foreach($Carts as $cart){
@@ -345,8 +358,7 @@ class ApiController extends Controller
 
     public function UpdateAddress(Request $request){
         
-        $Address = new Address();
-        $Address->Id            = intval($request->input('Id'));
+        $Address = Address::find($request->input("Id"));
         $Address->UserId        = intval($request->input('UserId'));
         $Address->Alias         = $request->input('Alias');
         $Address->FullName      = $request->input('FullName');
@@ -418,4 +430,24 @@ class ApiController extends Controller
         $exitCode = Artisan::call('cache:clear');
         return $exitCode;
     }
+
+
+    // Addresses
+    public function AllProvinces(Request $request){
+
+        return Province::all();
+    }
+
+    public function Cities(Request $request){
+
+        $Cities = City::where('province_id', $request->input('province_id'))->get();
+        return $Cities;
+    }
+
+    public function PostalCode(Request $request){
+
+        $PostalCode = PostalCode::where('city_id', $request->input('city_id'))->get();
+        return $PostalCode;
+    }
 }
+
