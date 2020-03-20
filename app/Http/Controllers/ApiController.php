@@ -167,7 +167,7 @@ class ApiController extends Controller
 
     public function CustomPatterns(){
 
-        $patterns = CustomPattern::all();
+        $patterns = CustomPattern::where('Approved', true)->get();
         
         foreach($patterns as $pattern){
 
