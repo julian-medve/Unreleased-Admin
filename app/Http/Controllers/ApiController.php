@@ -472,7 +472,7 @@ class ApiController extends Controller
                     'transaction_details' => 
                         [ 
                             'order_id' => rand(),
-                            'gross_amount' => 2000,
+                            'gross_amount' => $request->input('price'),
                         ]
                 ]
             ]
