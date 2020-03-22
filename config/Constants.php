@@ -55,8 +55,8 @@ return [
     ],
 
     'api'       => [
-        'server_key'            => 'SB-Mid-server-ImTAwOUnwZOeWh2IDKdmYMHD',
-        'end_points'            => 'https://app.sandbox.midtrans.com/snap/v1/transactions',
+        'payment_server_key'    => 'SB-Mid-server-ImTAwOUnwZOeWh2IDKdmYMHD',
+        'payment_end_points'    => 'https://app.sandbox.midtrans.com/snap/v1/transactions',
         'custom_products'       => 'https://develop3.kickavenue.com/nevertoolavish/products',
         'custom_products_auth'  => 'Basic  bnRsQGtpY2thdmVudWUuY29tOm50bHhraWNrYXZlbnVl',
     ]

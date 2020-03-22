@@ -67,7 +67,4 @@ Route::prefix('Order')->group(function () {
 });
 
 
-// Route::get('GetSnapToken', function() {
-    
-//     return $patterns;
-// });
+Route::post('charge',           'ApiController@SnapToken');

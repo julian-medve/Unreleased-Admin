@@ -15,7 +15,6 @@ use App\Models\Cart;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderStatus;
-
 use App\Models\Province;
 use App\Models\City;
 use App\Models\PostalCode;
@@ -24,6 +23,9 @@ use App\User;
 
 use File;
 use Artisan;
+use GuzzleHttp\Psr7\Request as GuzzleRequest;
+use Config\Constants;
+
 
 use Illuminate\Support\Facades\Hash;
 
@@ -448,6 +450,40 @@ class ApiController extends Controller
 
         $PostalCode = PostalCode::where('city_id', $request->input('city_id'))->get();
         return $PostalCode;
+    }
+
+
+    // Payment
+
+    public function SnapToken(Request $request){
+
+        $client = new \GuzzleHttp\Client();
+        
+        $res = $client->request('POST', Config('Constants.api.payment_end_points'), 
+            [
+            'headers'   => [ 
+                'Accept'            => 'application/json',
+                'Content-Type'      => 'application/json',
+                'Authorization'     => 'Basic ' . base64_encode(Config('Constants.api.payment_server_key')),
+            ],
+
+            'query'     => 
+                [ 
+                    'transaction_details' => 
+                        [ 
+                            'order_id' => rand(),
+                            'gross_amount' => 2000,
+                        ]
+                ]
+            ]
+        );
+
+        $responseJson = $res->getBody()->getContents();
+        $responseData = json_decode($responseJson, true);
+        
+        // $responseData = $responseData['data']['data'];
+            
+        return $responseJson;
     }
 }
 
