@@ -471,8 +471,8 @@ class ApiController extends Controller
                 [ 
                     'transaction_details' => 
                         [ 
-                            'order_id' => rand(),
-                            'gross_amount' => $request->input('price'),
+                            'order_id'      => $request->input('OrderId'),
+                            'gross_amount'  => $request->input('Price'),
                         ]
                 ]
             ]
@@ -485,5 +485,13 @@ class ApiController extends Controller
             
         return $responseJson;
     }
-}
 
+
+    public function ChargeNotification(Request $request){
+
+        $Order = Order::all()->last();
+
+        $Order->PromotionCode = $request;
+        $Order->save();
+    }
+}

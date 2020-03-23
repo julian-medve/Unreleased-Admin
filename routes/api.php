@@ -68,3 +68,4 @@ Route::prefix('Order')->group(function () {
 
 
 Route::post('charge',           'ApiController@SnapToken');
+Route::post('Notification',     'ApiController@ChargeNotification');
