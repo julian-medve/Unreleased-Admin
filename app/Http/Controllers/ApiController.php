@@ -519,4 +519,15 @@ class ApiController extends Controller
 
         $Transaction->save();
     }
+
+
+    public function SetDefaultAddress(Request $request){
+
+        $user =  User::where('id', $request->input('user_id'))->first();
+
+        $user->default_address = $request->input('default_address');
+        $user->save();
+
+        return $user;
+    }
 }

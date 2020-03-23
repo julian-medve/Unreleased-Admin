@@ -67,5 +67,8 @@ Route::prefix('Order')->group(function () {
 });
 
 
+Route::post('SetDefaultAddress', 'ApiController@SetDefaultAddress');
+
+
 Route::post('charge',           'ApiController@SnapToken');
 Route::post('Notification',     'ApiController@ChargeNotification');
