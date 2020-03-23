@@ -18,6 +18,7 @@ use App\Models\OrderStatus;
 use App\Models\Province;
 use App\Models\City;
 use App\Models\PostalCode;
+use App\Models\Transaction;
 
 use App\User;
 
@@ -489,9 +490,33 @@ class ApiController extends Controller
 
     public function ChargeNotification(Request $request){
 
-        $Order = Order::all()->last();
+        if($request->input('status_code') == "200"){
 
-        $Order->PromotionCode = $request;
-        $Order->save();
+            $Order = Order::where('Id', $request->input('order_id'))->get()->first();
+            $Order->Status = 2;
+            $Order->save();
+        }
+
+        
+        $Transaction = new Transaction();
+
+        $Transaction->order_id                  = $request->input('order_id');
+
+        $Transaction->transaction_time          = $request->input('transaction_time');
+        $Transaction->transaction_status        = $request->input('transaction_status');
+        $Transaction->transaction_id            = $request->input('transaction_id');
+        $Transaction->status_message            = $request->input('status_message');
+        $Transaction->status_code               = $request->input('status_code');
+        $Transaction->signature_key             = $request->input('signature_key');
+        $Transaction->settlement_time           = $request->input('settlement_time');
+
+        $Transaction->payment_type              = $request->input('payment_type');
+        $Transaction->merchant_id               = $request->input('merchant_id');
+        $Transaction->gross_amount              = $request->input('gross_amount');
+        $Transaction->fraud_status              = $request->input('fraud_status');
+        $Transaction->currency                  = $request->input('currency');
+        $Transaction->approval_code             = $request->input('approval_code');
+
+        $Transaction->save();
     }
 }
