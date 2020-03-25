@@ -80,6 +80,23 @@ class ApiController extends Controller
     }
 
 
+    public function UpdateUser(Request $request){
+
+        $user = User::find($request->input('user_id'));
+
+        $user->name     = $request->input('name');
+        $user->email    = $request->input('email');
+        $user->gender   = $request->input('gender');
+        $user->birthday = $request->input('birthday');
+        $user->phone    = $request->input('phone');
+        $user->profile_image    = $request->input('profile_image');
+
+        $user->save();
+
+        return $user;
+    }
+
+
     public function Banners(){
 
         $banners = Banner::all();

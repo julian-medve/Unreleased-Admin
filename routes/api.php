@@ -17,6 +17,11 @@ Route::post('Login',            'ApiController@Login');
 
 Route::post('Signup',           'ApiController@Signup');
 
+Route::prefix('User')->group(function () {
+    Route::post('/Update',      'ApiController@UpdateUser');
+});
+
+
 Route::get('Banners',           'ApiController@Banners');
 
 Route::get('CustomProducts',    'ApiController@CustomProducts');
