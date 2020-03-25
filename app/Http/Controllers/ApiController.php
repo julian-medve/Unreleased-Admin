@@ -56,12 +56,16 @@ class ApiController extends Controller
 
     public function Signup(Request $request){
 
-        $validatedData = $request->validate([
-            'name'              => 'required|min:1|max:255',
-            'email'             => 'required|max:255|unique:users',
-            'password'          => 'required|min:1|max:255',
-        ]);
+        // $validatedData = $request->validate([
+        //     'name'              => 'required|min:1|max:255',
+        //     'email'             => 'required|max:255|unique:users',
+        //     'password'          => 'required|min:1|max:255',
+        // ]);
 
+        $tempUser = User::where('email', $request->input('email'))->first();
+
+        if($tempUser != null)
+            return "Duplicated Email Address";
 
         $created = new User();
 
@@ -73,13 +77,6 @@ class ApiController extends Controller
         $created->save();
 
         return $created;
-        
-        // return User::create([
-        //     'name' => $request->input('name'),
-        //     'email' => $request->input('email'),
-        //     'password' => Hash::make($request->input('password')),
-        //     'role'  => Config('Constants.userrole.customer'),
-        // ]);
     }
 
 
