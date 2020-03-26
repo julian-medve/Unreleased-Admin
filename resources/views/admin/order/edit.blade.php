@@ -140,7 +140,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group row">
+                                                    <!--div class="form-group row">
                                                         <label for="ItmesForOrder" class="col-sm-3 col-form-label">Order Items</label>
                                                         <div class="col-sm-9">
 
@@ -157,7 +157,7 @@
                                                                 @endif
                                                             @endforeach
                                                         </div>
-                                                    </div>
+                                                    </div-->
 
 
                                                     <div class="form-group row justify-content-md-right">
