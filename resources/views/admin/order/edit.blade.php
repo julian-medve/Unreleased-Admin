@@ -140,6 +140,25 @@
                                                         </div>
                                                     </div>
 
+                                                    <div class="form-group row">
+                                                        <label for="ItmesForOrder" class="col-sm-3 col-form-label">Order Items</label>
+                                                        <div class="col-sm-9">
+
+                                                            @foreach($Carts as $cart)
+                                                            
+                                                                @if($cart->IsArtisan)
+                                                                    <img src = "{{ asset($cart->CustomImage) }}" width = "00"/>
+                                                                @else
+
+                                                                    @foreach(explode(':', $cart->CustomImages) as $image)
+                                                                        <img src = "{{ asset($image) }}"  width = "100"/>
+                                                                    @endforeach
+                                                                    
+                                                                @endif
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+
 
                                                     <div class="form-group row justify-content-md-right">
                                                         <div class="col-sm-10">

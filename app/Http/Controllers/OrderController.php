@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Cart;
 use App\Models\OrderStatus;
 use Config\Constants;
 
@@ -33,7 +34,9 @@ class OrderController extends Controller
         $Order = Order::find($request->input('Order'));
         $OrderStatuses = OrderStatus::all();
 
-        return view('admin.order.edit', compact('Order', 'OrderStatuses'));
+        $Carts = Cart::where('OrderId', $request->input('Order'))->get();
+        
+        return view('admin.order.edit', compact('Order', 'OrderStatuses', 'Carts'));
     }
 
     public function update(Request $request)
