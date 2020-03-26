@@ -306,10 +306,8 @@ class ApiController extends Controller
             }
         }else {
 
-            $filename = Config('Constants.directory.cart') . '/' . time() . ".png";
-            file_put_contents($filename, base64_decode($request->input('CustomImageData')));
-
-            $Cart->CustomImage      = $filename;
+            $ArtisanProduct = ArtisanProduct::find($Cart->ShoeId);
+            $Cart->CustomImage      = $ArtisanProduct->Preview;
         }
         
         
@@ -320,7 +318,7 @@ class ApiController extends Controller
     }
     
     public function UpdateCart(Request $request){
-
+        
         $Cart = Cart::where('Id', $request->input('Id'))->first();
         $Cart->ShoeCount        = intval($request->input('ShoeCount'));
         $Cart->OrderId          = intval($request->input('OrderId'));
