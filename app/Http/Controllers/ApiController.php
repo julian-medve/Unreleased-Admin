@@ -89,7 +89,6 @@ class ApiController extends Controller
         $user->gender   = $request->input('gender');
         $user->birthday = $request->input('birthday');
         $user->phone    = $request->input('phone');
-        $user->profile_image    = $request->input('profile_image');
 
         $user->save();
 
@@ -540,6 +539,25 @@ class ApiController extends Controller
         $user->default_address = $request->input('default_address');
         $user->save();
 
+        return $user;
+    }
+
+    public function UpdateProfileImage(Request $request){
+
+        $user =  User::where('id', $request->input('user_id'))->first();
+        $filepath = $user->profile_image;
+        
+        if(\File::exists($filepath))
+            \File::delete($filepath);
+
+        $filepath = Config('Constants.directory.user') . '/' . $request->input('filename');
+        file_put_contents($filepath, base64_decode($request->input('filedata')));
+
+        
+        $user->profile_image = $filepath;
+        $user->save();
+
+        $user->ProfileImageData = base64_encode(file_get_contents($filepath));
         return $user;
     }
 }

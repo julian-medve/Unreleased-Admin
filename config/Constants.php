@@ -50,8 +50,8 @@ return [
         'artisan_products'      => 'Uploads/ArtisanProducts',
         'seperater'             => ':',
         'custom_parts'          => 'images/CustomParts.jpg',
-        'customer_profile'      => 'Uploads/UserProfiles',
         'cart'                  => 'Uploads/Cart',
+        'user'                  => 'Uploads/User',
     ],
 
     'api'       => [
