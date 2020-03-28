@@ -544,20 +544,30 @@ class ApiController extends Controller
 
     public function UpdateProfileImage(Request $request){
 
-        $user =  User::where('id', $request->input('user_id'))->first();
-        $filepath = $user->profile_image;
-        
-        if(\File::exists($filepath))
-            \File::delete($filepath);
+        try {
+            $user =  User::where('id', $request->input('user_id'))->first();
+            $filepath = $user->profile_image;
+            
+            if(\File::exists($filepath))
+                \File::delete($filepath);
 
-        $filepath = Config('Constants.directory.user') . '/' . $request->input('filename');
-        file_put_contents($filepath, base64_decode($request->input('filedata')));
 
-        
-        $user->profile_image = $filepath;
-        $user->save();
+            $filepath = Config('Constants.directory.user') . '/' . $request->input('filename');
+            file_put_contents($filepath, base64_decode($request->input('filedata')));
 
-        $user->ProfileImageData = base64_encode(file_get_contents($filepath));
+            
+            $user->profile_image = $filepath;
+            $user->save();
+
+
+            $user->profile_image = $request->input('filename');
+            $user->ProfileImageData = base64_encode(file_get_contents($filepath));
+
+        } catch (Exception $e) {
+
+            return $e->getMessage();
+        }
+
         return $user;
     }
 }

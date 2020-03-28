@@ -18,7 +18,7 @@ Route::post('Login',            'ApiController@Login');
 Route::post('Signup',           'ApiController@Signup');
 
 Route::prefix('User')->group(function () {
-    Route::post('/Update',      'ApiController@UpdateUser');
+    Route::post('/Update',                  'ApiController@UpdateUser');
     Route::post('/UpdateProfileImage',      'ApiController@UpdateProfileImage');
 });
 
