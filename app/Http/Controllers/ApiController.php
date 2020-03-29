@@ -19,6 +19,7 @@ use App\Models\Province;
 use App\Models\City;
 use App\Models\PostalCode;
 use App\Models\Transaction;
+use App\Models\PromotionCode;
 
 use App\User;
 
@@ -54,6 +55,8 @@ class ApiController extends Controller
 
                 $user->profile_image = $arr[sizeof($arr) - 1];
             }
+            else
+                $user->ProfileImageData = null;
 
             return $user;
         }
@@ -421,8 +424,8 @@ class ApiController extends Controller
         $Order->UserId          = intval($request->input('UserId'));
         $Order->Date            = $request->input('Date');
         $Order->TotalPrice      = intval($request->input('TotalPrice'));
-        // $Order->PromotionCode   = $request->input('PromotionCode');
-        $Order->PromotionCode   = "";
+        $Order->PromotionCode   = $request->input('PromotionCode');
+        // $Order->PromotionCode   = "";
         $Order->Count           = intval($request->input('Count'));
         $Order->AddressIndex    = intval($request->input('AddressIndex'));
         $Order->Status          = intval($request->input('Status'));
@@ -577,5 +580,18 @@ class ApiController extends Controller
         }
 
         return $user;
+    }
+
+    function CheckPromotionCode(Request $request){
+
+        $promotionCode =  PromotionCode::where('Code', $request->input('Code'))->first();
+
+        if(is_null($promotionCode))
+            return "No Promotion Code.";
+
+        if(!is_null($promotionCode->UsedCustomer))
+            return "The Promotion Code was already used.";
+
+        return $promotionCode;
     }
 }

@@ -73,7 +73,8 @@ Route::prefix('Order')->group(function () {
 });
 
 
-Route::post('SetDefaultAddress', 'ApiController@SetDefaultAddress');
+Route::post('SetDefaultAddress',    'ApiController@SetDefaultAddress');
+Route::post('CheckPromotionCode',   'ApiController@CheckPromotionCode');
 
 
 Route::post('charge',           'ApiController@SnapToken');
