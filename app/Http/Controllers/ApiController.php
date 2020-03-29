@@ -47,6 +47,14 @@ class ApiController extends Controller
     
         if(!is_null($user) && Hash::check( $request->input('password'), $user['password'])){
 
+            if(!is_null($user->profile_image)){
+
+                $user->ProfileImageData = base64_encode(file_get_contents($user->profile_image));
+                $arr = explode('/', $user->profile_image);
+
+                $user->profile_image = $arr[sizeof($arr) - 1];
+            }
+
             return $user;
         }
             
