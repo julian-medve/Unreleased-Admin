@@ -67,12 +67,12 @@
                             <div class="col-sm-12">
                                 <div class="card">
 
-                                    <div class="card-header">
+                                    <!--div class="card-header">
                                         <h5>All Shipping Costs</h5>
                                         <div class="card-header-right">
                                         <a href="{{ route('admin.shippingcost.add')}}"><button type="button" class="btn btn-primary">Add Shipping Cost</button></a>
                                         </div>
-                                    </div>
+                                    </div-->
 
                                     <div class="card-block">
                                         <div class="table-responsive">
@@ -81,26 +81,24 @@
                                                     <tr>
                                                         <th>Country</th>
                                                         <th>Province</th>
-                                                        <th>City</th>
                                                         <th>Cost</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
 
-                                                    @foreach($ShippingCosts as $item)
+                                                    @foreach($Provinces as $item)
                                                     <tr>
-                                                        <td>{{ $item->Country }}</td> 
-                                                        <td>{{ $item->Province }}</td> 
-                                                        <td>{{ $item->City }}</td> 
-                                                        <td>{{ $item->Cost }}</td> 
+                                                        <td>Indonesia</td> 
+                                                        <td>{{ $item->name }}</td> 
+                                                        <td>{{ $item->shipping_cost }}</td> 
                                                         <td class="text-center">
                                                             <a class="dropdown-toggle addon-btn" data-toggle="dropdown" aria-expanded="true">
                                                                 <i class="fas fa-cog"></i>
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-right">
-                                                                <a class="dropdown-item" href="{{ route('admin.shippingcost.edit', ['ShippingCost' => $item->Id] ) }}"><i class="feather icon-edit"></i> &nbsp;&nbsp;Edit</a>
-                                                                <a class="dropdown-item" href="{{ route('admin.shippingcost.delete', ['ShippingCost' => $item->Id] ) }}"><i class="feather icon-trash-2"></i> &nbsp;&nbsp;Delete</a>
+                                                                <a class="dropdown-item" href="{{ route('admin.shippingcost.edit', ['Province' => $item->id] ) }}"><i class="feather icon-edit"></i> &nbsp;&nbsp;Edit</a>
+                                                                <!--a class="dropdown-item" href="{{ route('admin.shippingcost.delete', ['Province' => $item->id] ) }}"><i class="feather icon-trash-2"></i> &nbsp;&nbsp;Delete</a-->
                                                             </div>
                                                         </td>
                                                     </tr>

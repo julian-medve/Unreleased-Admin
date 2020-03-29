@@ -21,8 +21,7 @@
                                 </div>
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.index') }}"><i class="feather icon-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a>Settings</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.settings.typecategory.index') }}">Type Category</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.shippingcost.index') }}">Shipping Cost</a></li>
                                     <li class="breadcrumb-item"><a>Edit</a></li>
                                 </ul>
                             </div>
@@ -37,7 +36,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="alert alert-primary" role="alert">
-                                    <p>Edit Type Category.</p>
+                                    <p>Edit Shipping Cost</p>
                                 </div>
 
                                 @if ($message = Session::get('success'))
@@ -66,7 +65,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Edit Type Category</h5>
+                                        <h5>Edit Shipping Cost</h5>
                                     </div>
                                     <div class="card-block">
                                         <div class="row">
@@ -74,40 +73,20 @@
                                                 <form method="POST" action="{{ route('admin.shippingcost.update') }}" enctype="multipart/form-data">
                                                     @csrf
 
-                                                    <input type="hidden" name="ShippingCost" value="{{ $ShippingCost->Id }}"/>
+                                                    <input type="hidden" name="Province" value="{{ $Province->id }}"/>
 
-                                                    <div class="form-group row">
-                                                        <label for="Country" class="col-sm-3 col-form-label">Country</label>
-                                                        <div class="col-sm-9">
-                                                            <input class="form-control" name="Country" id="Country" placeholder="Country" value="{{ $ShippingCost->Country }}" required autofocus>
-                                                        </div>
-                                                    </div>
                                                     
                                                     <div class="form-group row">
                                                         <label for="Province" class="col-sm-3 col-form-label">Province</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="Province" id="Province" placeholder="Province" value="{{ $ShippingCost->Province }}" required autofocus>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group row">
-                                                        <label for="City" class="col-sm-3 col-form-label">City</label>
-                                                        <div class="col-sm-9">
-                                                            <input class="form-control" name="City" id="City" placeholder="City" value="{{ $ShippingCost->City }}" required autofocus>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="form-group row">
-                                                        <label for="PostalCode" class="col-sm-3 col-form-label">Postal Code</label>
-                                                        <div class="col-sm-9">
-                                                            <input class="form-control" name="PostalCode" id="PostalCode" value="{{ $ShippingCost->PostalCode }}" required autofocus>
+                                                            <input class="form-control" id="Province" placeholder="Province" value="{{ $Province->name }}" readonly autofocus>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label for="Cost" class="col-sm-3 col-form-label">Cost</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="Cost" id="Cost" placeholder="Description" value="{{ $ShippingCost->Cost }}" required autofocus>
+                                                            <input class="form-control" name="Cost" id="Cost" placeholder="Cost" value="{{ $Province->shipping_cost }}" required autofocus>
                                                         </div>
                                                     </div>
 

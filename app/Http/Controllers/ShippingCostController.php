@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ShippingCost;
+use App\Models\Province;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
 class ShippingCostController extends Controller
@@ -22,8 +22,8 @@ class ShippingCostController extends Controller
 
     public function index()
     {
-        $ShippingCosts = ShippingCost::all();
-        return view('admin.shippingcost.index',  compact('ShippingCosts'));
+        $Provinces = Province::all();
+        return view('admin.shippingcost.index',  compact('Provinces'));
     }
 
     public function add()
@@ -44,27 +44,23 @@ class ShippingCostController extends Controller
         // $Countries = $responseData['results'];
                           
         // return view('admin.shippingcost.add', compact('Countries'));
-        return view('admin.shippingcost.add');
+
+        $Provinces = Province::all();
+
+        return view('admin.shippingcost.add', compact('Provinces'));
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'Country'           => 'required',
             'Province'          => 'required',
-            'City'              => 'required',
             'Cost'              => 'required',
         ]);
-
         
-        $ShippingCost = new ShippingCost();
-        $ShippingCost->Country          = $request->input('Country');
-        $ShippingCost->Province         = $request->input('Province');
-        $ShippingCost->City             = $request->input('City');
-        $ShippingCost->PostalCode       = $request->input('PostalCode');
-        $ShippingCost->Cost             = $request->input('Cost');
+        $Province = Province::find($request->input('Province'));
+        $Province->shipping_cost = $request->input('Cost');
         
-        $ShippingCost->save();
+        $Province->save();
         $request->session()->flash('message', 'Successfully created Shipping Cost.');
 
         return redirect()->route('admin.shippingcost.index');
@@ -72,32 +68,26 @@ class ShippingCostController extends Controller
 
     public function edit(Request $request)
     {
-        $ShippingCost = ShippingCost::find($request->input('ShippingCost'));
+        $Province = Province::find($request->input('Province'));
 
         return view('admin.shippingcost.edit', [ 
-            'ShippingCost'  => $ShippingCost,
+            'Province'  => $Province,
             ]);
     }
 
     public function update(Request $request)
     {
         $validatedData = $request->validate([
-            'Country'           => 'required',
             'Province'          => 'required',
-            'City'              => 'required',
             'Cost'              => 'required',
         ]);
+        
+        $Province = Province::find($request->input('Province'));
+        $Province->shipping_cost = $request->input('Cost');        
+        $Province->save();
 
-        $ShippingCost = ShippingCost::find($request->input('ShippingCost'));
-
-        $ShippingCost->Country          = $request->input('Country');
-        $ShippingCost->Province         = $request->input('Province');
-        $ShippingCost->City             = $request->input('City');
-        $ShippingCost->PostalCode       = $request->input('PostalCode');
-        $ShippingCost->Cost             = $request->input('Cost');
-
-        $ShippingCost->save();
-        $request->session()->flash('message', 'Successfully updated Shipping Cost.');
+        
+        $request->session()->flash('message', 'Successfully created Shipping Cost.');
 
         return redirect()->route('admin.shippingcost.index');
     }

@@ -75,29 +75,23 @@
                                                     <div class="form-group row">
                                                         <label for="Country" class="col-sm-3 col-form-label">Country</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="Country" id="Country" required autofocus>
+                                                            <input class="form-control" name="Country" value = "Indonesia" id="Country" readonly>
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group row">
+                                                    <div class="form-group row" id="ProvinceArea">
                                                         <label for="Province" class="col-sm-3 col-form-label">Province</label>
                                                         <div class="col-sm-9">
 
-                                                        <input class="form-control" name="Province" id="Province" required autofocus>
-                                                        </div>
-                                                    </div>
+                                                                <select class="form-control" name="Province" id="Province">    
+                                                          
+                                                                <option value>Select Province...</option>
 
-                                                    <div class="form-group row">
-                                                        <label for="City" class="col-sm-3 col-form-label">City</label>
-                                                        <div class="col-sm-9">
-                                                            <input class="form-control" name="City" id="City" required autofocus>
-                                                        </div>
-                                                    </div>
+                                                                @foreach ($Provinces as $item)
+                                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                @endforeach
 
-                                                    <div class="form-group row">
-                                                        <label for="PostalCode" class="col-sm-3 col-form-label">Postal Code</label>
-                                                        <div class="col-sm-9">
-                                                            <input class="form-control" name="PostalCode" id="PostalCode" required autofocus>
+                                                            </select>
                                                         </div>
                                                     </div>
 
