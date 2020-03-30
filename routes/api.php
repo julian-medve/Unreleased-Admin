@@ -20,6 +20,9 @@ Route::post('Signup',           'ApiController@Signup');
 Route::prefix('User')->group(function () {
     Route::post('/Update',                  'ApiController@UpdateUser');
     Route::post('/UpdateProfileImage',      'ApiController@UpdateProfileImage');
+    Route::post('/SendForgotPwdCode',       'ApiController@SendForgotPwdCode');
+    Route::post('/ConfirmForgotPwdCode',    'ApiController@ConfirmForgotPwdCode');
+    Route::post('/ResetPassword',           'ApiController@ResetPassword');
 });
 
 

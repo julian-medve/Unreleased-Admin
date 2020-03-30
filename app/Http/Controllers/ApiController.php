@@ -594,4 +594,47 @@ class ApiController extends Controller
 
         return $promotionCode;
     }
+
+    function SendForgotPwdCode(Request $request){
+
+        $user = User::where('email', $request->input('email'))->first();
+        
+        if(is_null($user))
+            return "There is no account registered with the email.";
+
+
+        $rand_code = rand(1000, 9999);
+        $user->remember_token = $rand_code;
+        $user->save();
+
+        $headers = 'From: Unreleased' . "\r\n" .
+        $content = 'Need to reset your password? No problem. Please enter this code : ' . $rand_code . ' and you will be on your way. If you did not make this request, please ignore this email.';
+
+        $result = mail($request->input("email"), "Reset Password", $content, $headers);
+
+        return $user;
+    }
+
+    function ConfirmForgotPwdCode(Request $request){
+
+        $user = User::where('email', $request->input('email'))
+            ->where('remember_token', $request->input('code'))->first();
+
+        if(is_null($user))
+            return "Your can't reset your password with the token.";
+
+        $user->remember_token = null;
+        $user->save();
+
+        return $user;
+    }
+
+    function ResetPassword(Request $request){
+
+        $user = User::where('email', $request->input('email'))->first();
+        $user->password = Hash::make($request->input('password'));
+        $user->save();
+
+        return $user;
+    }
 }
