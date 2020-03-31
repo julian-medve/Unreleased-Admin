@@ -82,7 +82,15 @@ class ApiController extends Controller
 
         $created->name = $request->input('name');
         $created->email = $request->input('email');
-        $created->password = Hash::make($request->input('password'));
+
+        if(!is_null($request->input('password')))
+            $created->password = Hash::make($request->input('password'));
+
+        $created->phone     = $request->input('phone');
+        $created->birthday  = $request->input('birthday');
+        $created->gender    = $request->input('gender');
+
+
         $created->role = Config('Constants.userrole.customer');
 
         $created->save();
