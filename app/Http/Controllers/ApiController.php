@@ -89,10 +89,11 @@ class ApiController extends Controller
         $created->phone     = $request->input('phone');
         $created->birthday  = $request->input('birthday');
         $created->gender    = $request->input('gender');
-
+        $created->is_social = $request->input('is_social');
 
         $created->role = Config('Constants.userrole.customer');
 
+        
         $created->save();
 
         return $created;
