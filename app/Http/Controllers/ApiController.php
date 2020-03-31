@@ -45,6 +45,9 @@ class ApiController extends Controller
         $user =  User::where('email', $request->input('email'))
                 ->where('role', Config('Constants.userrole.customer'))
                 ->first();
+
+        if($user->is_social)
+            return $user;
     
         if(!is_null($user) && Hash::check( $request->input('password'), $user['password'])){
 
@@ -76,7 +79,11 @@ class ApiController extends Controller
         $tempUser = User::where('email', $request->input('email'))->first();
 
         if($tempUser != null)
-            return "Duplicated Email Address";
+            if(!$request->input('is_social'))
+                return "Duplicated Email Address";
+            else
+                return $tempUser;
+
 
         $created = new User();
 
@@ -93,7 +100,7 @@ class ApiController extends Controller
 
         $created->role = Config('Constants.userrole.customer');
 
-        
+
         $created->save();
 
         return $created;
