@@ -46,10 +46,8 @@ class ApiController extends Controller
                 ->where('role', Config('Constants.userrole.customer'))
                 ->first();
 
-        if($user->is_social)
-            return $user;
-    
-        if(!is_null($user) && Hash::check( $request->input('password'), $user['password'])){
+        
+        if(!is_null($user) && (!$user->is_social && Hash::check( $request->input('password'), $user['password']) || $user->is_social)){
 
             if(!is_null($user->profile_image)){
 
