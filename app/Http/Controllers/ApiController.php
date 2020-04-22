@@ -418,7 +418,8 @@ class ApiController extends Controller
         $Address = Address::find($request->input("Id"));
         $Address->delete();
 
-        return AllAddress($request);
+        $Addresses = Address::where('UserId', $request->input('UserId'))->get();
+        return $Addresses;
     }
 
 
