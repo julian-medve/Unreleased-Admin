@@ -13,8 +13,16 @@
 
 Auth::routes();
 
+Route::get('admin/index', 'BannerController@index')->name('admin.index');
 
-Route::get('/', 'BannerController@index')->name('admin.index');
+Route::prefix('admin/banner')->group(function () {  
+    Route::get('/',          'BannerController@index')->name('admin.banner.index');
+    Route::get('/add',       'BannerController@add')->name('admin.banner.add');
+    Route::post('/store',    'BannerController@store')->name('admin.banner.store');
+    Route::get('/edit',      'BannerController@edit')->name('admin.banner.edit');
+    Route::post('/update',   'BannerController@update')->name('admin.banner.update');
+    Route::get('/delete',    'BannerController@delete')->name('admin.banner.delete');
+});
 
 // Route::prefix('dashboard')->group(function () {  
 //     Route::get('/default', function(){          return view('dashboard.homepage'); });

@@ -21,7 +21,7 @@
                         <div class="row align-items-center">
                             <div class="col-md-12">
                                 <div class="page-header-title">
-                                    <h5 class="m-b-10">Progress</h5>
+                                    <h5 class="m-b-10">Banners</h5>
                                 </div>
                                 <ul class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.index')}}"><i class="feather icon-home"></i></a></li>
@@ -63,67 +63,6 @@
                             <!-- [ carousel ] start -->
                         </div>
 
-                        <div class="row justify-content-md-center">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Banner Slide for web and mobile apps</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                            <div class="carousel-inner">
-
-                                                @foreach($bannerlist as $item)
-
-                                                    @if($item == $bannerlist[0])
-                                                        <div class="carousel-item active">
-                                                    @else
-                                                        <div class="carousel-item">
-                                                    @endif
-                                                    
-                                                        <img class="d-block w-100" src="{{ asset($item->filepath) }}">
-                                                    </div>
-
-                                                @endforeach
-                                                
-                                            </div>
-                                            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a>
-                                            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- [ Image-Gallery ] start -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h5>Banner Images</h5>
-                                    </div>
-                                    <div class="card-block">
-                                        <p> These images are shown for web and mobile applicstions for slider.</p>
-                                        <div class="row text-center">
-
-                                            @foreach($bannerlist as $item)
-
-                                                <div class="col-xl-2 col-lg-3 col-sm-4 col-xs-12">
-                                                    <a href="{{ asset($item->filepath) }}" data-toggle="lightbox"><img src="{{ asset($item->filepath) }}" class="img-fluid m-b-10" alt=""></a>
-                                                    <a href="{{ route('admin.banner.delete', ['id' => $item->id] ) }}"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a>
-                                                </div>
-
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            
-                        <!-- [ Image-Gallery ] end -->
-                        
-
                         <!-- [ file-upload ] start -->
                         <div class = "row">
 
@@ -135,11 +74,21 @@
 
                                     <div class="card-block">
 
-                                        <form action="{{ route('admin.banner.upload') }}" method="POST" enctype="multipart/form-data">
+                                        <form action="{{ route('admin.banner.update') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
 
+                                                <input type="hidden" name="id" value="{{ $banner->id }}"/>
+                                                
                                                 <div class="col-md-6">
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="Image" class="col-sm-3 col-form-label">Current Banner</label>
+                                                        <div class="col-sm-9">
+                                                            <img src = "{{ asset($banner->filepath) }}" class="img-fluid" width = "200px">
+                                                        </div>
+                                                    </div>
+                                                    
                                                     <div class="form-group row">
                                                         <label for="Image" class="col-sm-3 col-form-label">Image</label>
                                                         <div class="col-sm-9">
@@ -150,7 +99,7 @@
                                                     <div class="form-group row">
                                                         <label for="Url" class="col-sm-3 col-form-label">Url</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="url" id="url" placeholder="https://google.com" required autofocus>
+                                                            <input class="form-control" name="url" id="url" placeholder="https://google.com" value = "{{ $banner->url }}" required autofocus>
                                                         </div>
                                                     </div>              
 

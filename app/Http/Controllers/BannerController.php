@@ -21,7 +21,7 @@ class BannerController extends Controller
     
     public function index()
     {
-        return view('admin.banner', array(
+        return view('admin.banner.index', array(
             'bannerlist'  => Banner::all()
         ));
     }
@@ -32,7 +32,11 @@ class BannerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function upload(Request $request)
+    public function add(Request $request){
+        return view('admin.banner.add');
+    }
+
+    public function store(Request $request)
     {
         request()->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=1081,height=484',
@@ -46,7 +50,33 @@ class BannerController extends Controller
         $bannerlist->url = $request->input('url');
         $bannerlist->save();
 
-        request()->session()->flash('message', 'Successfully uploaded banner.');
+        request()->session()->flash('message', 'Successfully created banner.');
+        
+        return redirect()->route('admin.banner.index');
+    }
+
+    
+    public function edit(Request $request){
+
+        $banner = Banner::find($request->input('id'));
+        return  view('admin.banner.edit', compact('banner'));
+    }
+
+    public function update(Request $request){
+
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=1081,height=484',
+        ]);
+
+        $imageName = time() . '_' . request()->image->getClientOriginalName();
+        request()->image->move(public_path(Config('Constants.directory.banners')), $imageName);
+
+        $banner = Banner::find($request->input('id'));
+        $banner->filepath = Config('Constants.directory.banners') . '/' . $imageName;
+        $banner->url = $request->input('url');
+        $banner->save();
+
+        request()->session()->flash('message', 'Successfully updated banner.');
         
         return redirect()->route('admin.banner.index');
     }
@@ -65,4 +95,6 @@ class BannerController extends Controller
         
         return redirect()->route('admin.banner.index');
     }
+
+
 }
