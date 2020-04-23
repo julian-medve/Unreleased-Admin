@@ -32,7 +32,7 @@ class BannerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function upload()
+    public function upload(Request $request)
     {
         request()->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=1081,height=484',
@@ -43,6 +43,7 @@ class BannerController extends Controller
 
         $bannerlist = new Banner();
         $bannerlist->filepath = Config('Constants.directory.banners') . '/' . $imageName;
+        $bannerlist->url = $request->input('url');
         $bannerlist->save();
 
         request()->session()->flash('message', 'Successfully uploaded banner.');

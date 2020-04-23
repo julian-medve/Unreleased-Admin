@@ -127,7 +127,7 @@
                         <!-- [ file-upload ] start -->
                         <div class = "row">
 
-                            <div class="col-sm-12">
+                            <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>Upload Image</h5>
@@ -138,12 +138,27 @@
                                         <form action="{{ route('admin.banner.upload') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="file" name="image" class="form-control">
-                                                </div>                  
 
                                                 <div class="col-md-6">
-                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                    <div class="form-group row">
+                                                        <label for="Image" class="col-sm-3 col-form-label">Image</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" type="file" name="image" id="image" required autofocus>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Url" class="col-sm-3 col-form-label">Url</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="url" id="url" placeholder="https://google.com" required autofocus>
+                                                        </div>
+                                                    </div>              
+
+                                                    <div class="form-group row justify-content-md-right">
+                                                        <div class="col-sm-10">
+                                                            <button type="submit" class="btn btn-primary">Save</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
