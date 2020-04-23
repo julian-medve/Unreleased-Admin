@@ -92,14 +92,14 @@
                                                     <div class="form-group row">
                                                         <label for="Image" class="col-sm-3 col-form-label">Image</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" type="file" name="image" id="image" required autofocus>
+                                                            <input class="form-control" type="file" name="image" id="image" autofocus>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label for="Url" class="col-sm-3 col-form-label">Url</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="url" id="url" placeholder="https://google.com" value = "{{ $banner->url }}" required autofocus>
+                                                            <input class="form-control" name="url" id="url" placeholder="https://google.com" value = "{{ $banner->url }}" autofocus>
                                                         </div>
                                                     </div>              
 

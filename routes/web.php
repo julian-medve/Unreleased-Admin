@@ -13,6 +13,7 @@
 
 Auth::routes();
 
+Route::get('/', 'BannerController@index')->name('admin.index');
 Route::get('admin/index', 'BannerController@index')->name('admin.index');
 
 Route::prefix('admin/banner')->group(function () {  

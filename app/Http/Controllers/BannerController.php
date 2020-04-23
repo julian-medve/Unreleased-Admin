@@ -64,15 +64,15 @@ class BannerController extends Controller
 
     public function update(Request $request){
 
-        request()->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:width=1081,height=484',
-        ]);
-
-        $imageName = time() . '_' . request()->image->getClientOriginalName();
-        request()->image->move(public_path(Config('Constants.directory.banners')), $imageName);
-
         $banner = Banner::find($request->input('id'));
-        $banner->filepath = Config('Constants.directory.banners') . '/' . $imageName;
+
+        if(request()->image != null){
+
+            $imageName = time() . '_' . request()->image->getClientOriginalName();
+            request()->image->move(public_path(Config('Constants.directory.banners')), $imageName);    
+            $banner->filepath = Config('Constants.directory.banners') . '/' . $imageName;
+        }
+        
         $banner->url = $request->input('url');
         $banner->save();
 
