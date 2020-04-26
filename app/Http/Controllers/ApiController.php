@@ -497,31 +497,38 @@ class ApiController extends Controller
 
         $client = new \GuzzleHttp\Client();
         
-        $res = $client->request('POST', Config('Constants.api.payment_end_points'), 
-            [
-            'headers'   => [ 
-                'Accept'            => 'application/json',
-                'Content-Type'      => 'application/json',
-                'Authorization'     => 'Basic ' . base64_encode(Config('Constants.api.payment_server_key')),
-            ],
+        try {
+            $res = $client->request('POST', Config('Constants.api.payment_end_points'), 
+                [
+                'headers'   => [ 
+                    'Accept'            => 'application/json',
+                    'Content-Type'      => 'application/json',
+                    'Authorization'     => 'Basic ' . base64_encode(Config('Constants.api.payment_server_key')),
+                ],
 
-            'query'     => 
-                [ 
-                    'transaction_details' => 
-                        [ 
-                            'order_id'      => $request->input('OrderId'),
-                            'gross_amount'  => $request->input('Price'),
-                        ]
+                'query'     => 
+                    [ 
+                        'transaction_details' => 
+                            [ 
+                                'order_id'      => $request->input('OrderId'),
+                                'gross_amount'  => $request->input('Price'),
+                            ]
+                    ]
                 ]
-            ]
-        );
+            );
 
-        $responseJson = $res->getBody()->getContents();
-        $responseData = json_decode($responseJson, true);
+            $responseJson = $res->getBody()->getContents();
+            $responseData = json_decode($responseJson, true);
+            return $responseJson;
+
+        } catch (GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody(true);
+            return $responseBodyAsString;
+        }
+
         
         // $responseData = $responseData['data']['data'];
-            
-        return $responseJson;
     }
 
 
