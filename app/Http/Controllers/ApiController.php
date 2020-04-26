@@ -496,7 +496,7 @@ class ApiController extends Controller
     public function SnapToken(Request $request){
 
         $client = new \GuzzleHttp\Client();
-        
+                
         try {
             $res = $client->request('POST', Config('Constants.api.payment_end_points'), 
                 [
@@ -510,7 +510,7 @@ class ApiController extends Controller
                     [ 
                         'transaction_details' => 
                             [ 
-                                'order_id'      => $request->input('OrderId'),
+                                'order_id'      => $request->input('OrderId') . '_' . time(),
                                 'gross_amount'  => $request->input('Price'),
                             ]
                     ]
