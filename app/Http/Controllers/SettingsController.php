@@ -26,6 +26,12 @@ class SettingsController extends Controller
             $Faq = $Faq['Value'];
 
 
+        $Production = Settings::where('Name', 'Production')->get()->first();
+        
+        if(!is_null($Production) && !empty($Production))
+            $Production = $Production['Value'];
+        
+
         // $Custom_Color_Price = Settings::where('Name', 'Custom_Color_Price')->get()->first();
         
         // if(!is_null($Custom_Color_Price) && !empty($Custom_Color_Price))
@@ -39,7 +45,7 @@ class SettingsController extends Controller
 
         // return view('admin.settings.others.index', compact('Faq', 'Custom_Color_Price', 'Custom_Text_Price'));
 
-        return view('admin.settings.others.index', compact('Faq'));
+        return view('admin.settings.others.index', compact('Faq', 'Production'));
     }
 
 
@@ -56,6 +62,22 @@ class SettingsController extends Controller
         }
         $Faq->Value      = $request->input('Faq');
         $Faq->save();
+
+
+        $Production = Settings::where('Name', 'Production')->get()->first();
+
+        if(empty($Production)){
+
+            $Production = new Settings();
+            $Production->Name       = 'Production';
+        }
+
+        if($request->input('Production') == 'on')
+            $Production->Value      = true;
+        else
+            $Production->Value      = false;
+            
+        $Production->save();
 
 
         // Save Custom Color Price

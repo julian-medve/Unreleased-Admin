@@ -101,6 +101,23 @@
                                                         </div>
                                                     </div> -->
 
+                                                    <div class="form-group row">
+                                                        <label for="Production" class="col-sm-3 col-form-label">Midtrans Production Mode</label>
+                                                        <div class="col-sm-9">
+                                                            <div class="switch switch-primary d-inline s-r-8">
+                                                                
+                                                                
+                                                                @if($Production)
+                                                                    <input type="checkbox" name="Production" id="Production" checked>
+                                                                @else
+                                                                    <input type="checkbox" name="Production" id="Production">
+                                                                @endif
+                                                                
+                                                                <label for="Production" class="cr"></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group row justify-content-md-right">
                                                         <div class="col-sm-10">
                                                             <button type="submit" class="btn btn-primary">Save</button>
