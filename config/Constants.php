@@ -55,8 +55,11 @@ return [
     ],
 
     'api'       => [
-        'payment_server_key'    => 'SB-Mid-server-ImTAwOUnwZOeWh2IDKdmYMHD',
-        'payment_end_points'    => 'https://app.sandbox.midtrans.com/snap/v1/transactions',
+        'payment_sandbox_server_key'        => 'SB-Mid-server-ImTAwOUnwZOeWh2IDKdmYMHD',
+        'payment_production_server_key'     => 'Mid-server-VYq5gxCuwZFC3kVg0qMROptt',
+        'payment_sandbox_end_points'        => 'https://app.sandbox.midtrans.com/snap/v1/transactions',
+        'payment_production_end_points'     => 'https://app.midtrans.com/snap/v1/transactions',
+
         'custom_products'       => 'https://api.kickavenue.com/nevertoolavish/products',
         'custom_products_auth'  => 'Basic  dW5yZWxlYXNlZF9jdXN0b21AZ21haWwuY29tOm50bHhraWNrYXZlbnVl',
     ]

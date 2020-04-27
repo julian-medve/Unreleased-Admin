@@ -496,14 +496,25 @@ class ApiController extends Controller
     public function SnapToken(Request $request){
 
         $client = new \GuzzleHttp\Client();
-                
+
+        $end_point = Config('Constants.api.payment_sandbox_end_points');
+        $server_key = Config('Constants.api.payment_sandbox_server_key');
+
+        $Production = Settings::where('Name', 'Production')->get()->first();
+        
+        if($Production){
+            $end_point  = Config('Constants.api.payment_production_end_points');
+            $server_key = Config('Constants.api.payment_production_server_key');
+        }
+        
+        
         try {
             $res = $client->request('POST', Config('Constants.api.payment_end_points'), 
                 [
                 'headers'   => [ 
                     'Accept'            => 'application/json',
                     'Content-Type'      => 'application/json',
-                    'Authorization'     => 'Basic ' . base64_encode(Config('Constants.api.payment_server_key')),
+                    'Authorization'     => 'Basic ' . base64_encode($server_key),
                 ],
 
                 'query'     => 
