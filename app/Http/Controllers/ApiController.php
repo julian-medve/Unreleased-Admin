@@ -440,12 +440,20 @@ class ApiController extends Controller
         $Order->Date            = $request->input('Date');
         $Order->TotalPrice      = intval($request->input('TotalPrice'));
         $Order->PromotionCode   = $request->input('PromotionCode');
-        // $Order->PromotionCode   = "";
         $Order->Count           = intval($request->input('Count'));
         $Order->AddressIndex    = intval($request->input('AddressIndex'));
         $Order->Status          = intval($request->input('Status'));
 
         $Order->save();
+
+        
+        $promotionCode =  PromotionCode::where('Code', $request->input('PromotionCode'))->first();
+
+        if(!is_null($promotionCode)){
+
+            $promotionCode->UsedTimes = $promotionCode->UsedTimes + 1;
+            $promotionCode->save();
+        }            
 
         return $Order;
     }
@@ -621,9 +629,6 @@ class ApiController extends Controller
 
         if(is_null($promotionCode))
             return "No Promotion Code.";
-
-        if(!is_null($promotionCode->UsedCustomer))
-            return "The Promotion Code was already used.";
 
         return $promotionCode;
     }
