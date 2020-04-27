@@ -98,9 +98,16 @@
                                                     </div>
                                                     
                                                     <div class="form-group row">
-                                                        <label for="Quota" class="col-sm-3 col-form-label">Quota</label>
+                                                        <label for="Percent" class="col-sm-3 col-form-label">Percent</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="Quota" id="Quota" value="{{ $PromotionCode->Quota }}" required autofocus>
+                                                            <input class="form-control" name="Percent" id="Percent" value="{{ $PromotionCode->Percent }}" required autofocus>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Times" class="col-sm-3 col-form-label">Times</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="Times" id="Times" value="{{ $PromotionCode->Times }}" required autofocus>
                                                         </div>
                                                     </div>
 

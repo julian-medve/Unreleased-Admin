@@ -37,7 +37,8 @@ class PromotionCodeController extends Controller
             'Name'              => 'required',
             'Description'       => 'required',
             'Code'              => 'required',
-            'Quota'             => 'required',
+            'Percent'           => 'required',
+            'Times'             => 'required',
         ]);
 
         
@@ -45,7 +46,8 @@ class PromotionCodeController extends Controller
         $PromotionCode->Name             = $request->input('Name');
         $PromotionCode->Description      = $request->input('Description');
         $PromotionCode->Code             = $request->input('Code');
-        $PromotionCode->Quota            = $request->input('Quota');
+        $PromotionCode->Percent          = $request->input('Percent');
+        $PromotionCode->Times            = $request->input('Times');
         
         $PromotionCode->save();
         $request->session()->flash('message', 'Successfully created Promotion Code.');
@@ -69,7 +71,8 @@ class PromotionCodeController extends Controller
         $PromotionCode->Name            = $request->input('Name');
         $PromotionCode->Description     = $request->input('Description');
         $PromotionCode->Code            = $request->input('Code');
-        $PromotionCode->Quota           = $request->input('Quota');
+        $PromotionCode->Percent         = $request->input('Percent');
+        $PromotionCode->Times           = $request->input('Times');
 
         $PromotionCode->save();
         $request->session()->flash('message', 'Successfully updated Promotion Code.');

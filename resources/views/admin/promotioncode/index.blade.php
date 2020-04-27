@@ -83,7 +83,9 @@
                                                         <th>Name</th>
                                                         <th>Description</th>
                                                         <th>Code</th>
-                                                        <th>Quota</th>
+                                                        <th>Percent</th>
+                                                        <th>Total Times</th>
+                                                        <th>Used Times</th>
                                                         <th>Used Customer</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -95,7 +97,9 @@
                                                         <td>{{ $item->Name }}</td> 
                                                         <td>{{ $item->Description }}</td> 
                                                         <td>{{ $item->Code }}</td> 
-                                                        <td>{{ $item->Quota }}</td> 
+                                                        <td>{{ $item->Percent }}</td> 
+                                                        <td>{{ $item->Times }}</td> 
+                                                        <td>{{ $item->UsedTimes }}</td> 
                                                         <td>{{ $item->UsedCustomer }}</td> 
 
                                                         <td class="text-center">
