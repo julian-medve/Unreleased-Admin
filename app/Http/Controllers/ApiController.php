@@ -502,14 +502,14 @@ class ApiController extends Controller
 
         $Production = Settings::where('Name', 'Production')->get()->first();
         
-        if($Production){
+        if($Production->Value){
             $end_point  = Config('Constants.api.payment_production_end_points');
             $server_key = Config('Constants.api.payment_production_server_key');
         }
         
         
         try {
-            $res = $client->request('POST', Config('Constants.api.payment_end_points'), 
+            $res = $client->request('POST', $end_point, 
                 [
                 'headers'   => [ 
                     'Accept'            => 'application/json',
