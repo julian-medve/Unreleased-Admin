@@ -97,6 +97,7 @@ class CustomProductController extends Controller
         $user = auth()->user();
         $CustomProduct = new CustomProduct();
         $CustomProduct->SKU             = $request->input('SKU');
+        $CustomProduct->SellerId        = $request->input('SellerId');
         $CustomProduct->Name            = $request->input('Name');
         $CustomProduct->Description     = $request->input('Description');
         $CustomProduct->Price           = $request->input('Price');

@@ -467,8 +467,43 @@ class ApiController extends Controller
 
         $Order->AddressIndex    = intval($request->input('AddressIndex'));
         $Order->Status          = intval($request->input('Status'));
-        
         $Order->save();
+
+        if($request->input('Status') == 1){
+
+            $Carts = Cart::where('OrderId', $Order->Id)->where('IsArtisan', false)->get();
+            
+            foreach($Carts as $cart){
+
+                $customProduct = CustomProduct::find($cart->ShoeId);
+                
+                $sizes = explode(':', $customProduct->Sizes);
+                $sellerIds = explode(':', $customProduct->SellerId);
+                
+                $index = array_search($cart->ShoeSize, $sizes);
+                
+                $sellerId = $sellerIds[$index];
+                $quantity = $cart->ShoeCount;
+                $offer_amount = $customProduct->Price;
+
+                $client = new \GuzzleHttp\Client();
+        
+                $res = $client->request('POST', Config('Constants.api.checkout_products'), 
+                    [
+                    'headers'   => [ 'Authorization'    => Config('Constants.api.custom_products_auth'),],
+                    'query'     => [ 'user_sell_id'     => $sellerId, 
+                                     'quantity'         => $quantity, 
+                                     'offer_amount'     => $offer_amount,    
+                                    ]
+                    ]
+                );
+        
+                $responseJson = $res->getBody()->getContents();
+                $responseData = json_decode($responseJson, true);
+                
+                // $responseData = $responseData['status_code']; 
+            }      
+        }
 
         return $Order;
     }

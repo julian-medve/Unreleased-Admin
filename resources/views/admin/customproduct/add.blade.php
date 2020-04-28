@@ -184,6 +184,8 @@
                                                         </div>
                                                     </div>
 
+                                                    <input type = "hidden" name = "SellerId" id = "SellerId"/>
+
                                                     <div class="form-group row justify-content-md-right">
                                                         <div class="col-sm-10">
                                                             <button type="submit" class="btn btn-primary">Save</button>
@@ -235,6 +237,7 @@
 
                         var sizes = "";
                         var price = 0;
+                        var sellerId = "";
 
                         data['sneakers_sizes'].forEach( (element) => {
                             sizes += element["US"] + ":";
@@ -243,12 +246,17 @@
                                 price = parseInt(element["asking_price"]);
                             else if(price > parseInt(element["asking_price"]))
                                 price = parseInt(element["asking_price"]);
+
+                            sellerId += element["id"] + ":"; 
                         });
 
                         sizes = sizes.substr(0, sizes.length - 1);
+                        sellerId = sellerId.substr(0, sellerId.length - 1);
+
                         $('#Sizes').val(sizes);
 
                         $('#Price').val(price);
+                        $('#SellerId').val(sellerId);
                     }
                 });
             });

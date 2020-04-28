@@ -61,6 +61,7 @@ return [
         'payment_production_end_points'     => 'https://app.midtrans.com/snap/v1/transactions',
 
         'custom_products'       => 'https://api.kickavenue.com/nevertoolavish/products',
+        'checkout_products'     => 'https://api.kickavenue.com/nevertoolavish/checkout',
         'custom_products_auth'  => 'Basic  dW5yZWxlYXNlZF9jdXN0b21AZ21haWwuY29tOm50bHhraWNrYXZlbnVl',
     ]
 ];
