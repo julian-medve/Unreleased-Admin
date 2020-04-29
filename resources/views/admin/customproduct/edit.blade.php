@@ -80,8 +80,12 @@
                                                     
                                                     <div class="form-group row">
                                                         <label for="SKU" class="col-sm-3 col-form-label">SKU</label>
-                                                        <div class="col-sm-9">
+                                                        <div class="col-sm-6">
                                                             <input class="form-control" name="SKU" id="SKU" placeholder="SKU" value="{{ $CustomProduct->SKU }}">
+                                                        </div>
+
+                                                        <div class="col-sm-3">
+                                                            <button class="btn btn-primary" id="Search">Search</button>
                                                         </div>
                                                     </div>
 
@@ -177,6 +181,8 @@
                                                         </div>
                                                     </div>
 
+                                                    <input type = "hidden" name = "SellerId" id = "SellerId"/>
+
                                                     <div class="form-group row justify-content-md-right">
                                                         <div class="col-sm-10">
                                                             <button type="submit" class="btn btn-primary">Save</button>
@@ -253,5 +259,53 @@
 @section('javascript')
 
     <script src="{{ asset('js/pages/form-advance-custom.js') }}"></script>
+
+
+    <script>
+        $(document).ready(function(){
+
+            $('#Search').click(function(){
+
+                var sku = $('#SKU').val();
+
+                $.ajax({
+                    method: "GET",
+                    url: "{{ route('admin.customproduct.search')}}",
+                    data: { SKU: sku, _token: "{{ csrf_token() }}" },
+                    dataType: 'JSON',
+
+                    success: function (data) { 
+                        
+                        $('#Name').val(data['display_name']);
+                        $('#Description').val(data['display_name']);
+                        $('#Quantity').val(data['qty']);
+
+                        var sizes = "";
+                        var price = 0;
+                        var sellerId = "";
+
+                        data['sneakers_sizes'].forEach( (element) => {
+                            sizes += element["US"] + ":";
+
+                            if(price == 0)
+                                price = parseInt(element["asking_price"]);
+                            else if(price > parseInt(element["asking_price"]))
+                                price = parseInt(element["asking_price"]);
+
+                            sellerId += element["id"] + ":"; 
+                        });
+
+                        sizes = sizes.substr(0, sizes.length - 1);
+                        sellerId = sellerId.substr(0, sellerId.length - 1);
+
+                        $('#Sizes').val(sizes);
+
+                        $('#Price').val(price);
+                        $('#SellerId').val(sellerId);
+                    }
+                });
+            });
+        });
+    </script>
 
 @endsection

@@ -142,9 +142,11 @@ class CustomProductController extends Controller
         $CustomProduct = CustomProduct::find($request->input('CustomProduct'));
         
         
-        $CustomProduct->SKU            = $request->input('SKU');
-        $CustomProduct->Name           = $request->input('Name');
-        $CustomProduct->Description    = $request->input('Description');
+        $CustomProduct->SKU             = $request->input('SKU');
+        $CustomProduct->SellerId        = $request->input('SellerId');
+        $CustomProduct->Name            = $request->input('Name');
+        $CustomProduct->Description     = $request->input('Description');
+        $CustomProduct->Sizes           = $request->input('Sizes');
 
 
         $PartPrices = "";
