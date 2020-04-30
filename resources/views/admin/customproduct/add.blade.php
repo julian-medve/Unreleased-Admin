@@ -233,8 +233,8 @@
                         
                         $('#Name').val(data['display_name']);
                         $('#Description').val(data['display_name']);
-                        $('#Quantity').val(data['qty']);
 
+                        var quantity = "";
                         var sizes = "";
                         var price = 0;
                         var sellerId = "";
@@ -248,15 +248,18 @@
                                 price = parseInt(element["asking_price"]);
 
                             sellerId += element["id"] + ":"; 
+                            quantity += element["stock"] + ":";
                         });
 
                         sizes = sizes.substr(0, sizes.length - 1);
                         sellerId = sellerId.substr(0, sellerId.length - 1);
+                        quantity = quantity.substr(0, quantity.length - 1);
 
                         $('#Sizes').val(sizes);
 
                         $('#Price').val(price);
                         $('#SellerId').val(sellerId);
+                        $('#Quantity').val(quantity);
                     }
                 });
             });

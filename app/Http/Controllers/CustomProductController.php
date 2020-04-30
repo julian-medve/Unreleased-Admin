@@ -102,6 +102,7 @@ class CustomProductController extends Controller
         $CustomProduct->Description     = $request->input('Description');
         $CustomProduct->Price           = $request->input('Price');
         $CustomProduct->Sizes           = $request->input('Sizes');
+        $CustomProduct->Quantity        = $request->input('Quantity');
         $CustomProduct->Preview         = Config('Constants.directory.custom_products') . '/' . $previewImage;
         $CustomProduct->Model           = Config('Constants.directory.custom_products') . '/' . $model;
 
@@ -147,6 +148,7 @@ class CustomProductController extends Controller
         $CustomProduct->Name            = $request->input('Name');
         $CustomProduct->Description     = $request->input('Description');
         $CustomProduct->Sizes           = $request->input('Sizes');
+        $CustomProduct->Quantity        = $request->input('Quantity');
 
 
         $PartPrices = "";

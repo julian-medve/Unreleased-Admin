@@ -85,7 +85,7 @@
                                                         </div>
 
                                                         <div class="col-sm-3">
-                                                            <button class="btn btn-primary" id="Search">Search</button>
+                                                            <button class="btn btn-primary" id="Search" type="button">Search</button>
                                                         </div>
                                                     </div>
 
@@ -103,6 +103,27 @@
                                                         </div>
                                                     </div>
                                                   
+                                                    <div class="form-group row">
+                                                        <label for="Quantity" class="col-sm-3 col-form-label">Quantity</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="Quantity" id="Quantity" placeholder="Quantity"  value="{{ $CustomProduct->Quantity }}" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Price" class="col-sm-3 col-form-label">Base Price</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="Price" id="Price" placeholder="Price"  value="{{ $CustomProduct->Price }}" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="Sizes" class="col-sm-3 col-form-label">Sizes</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="Sizes" id="Sizes" placeholder="Sizes"  value="{{ $CustomProduct->Sizes }}" readonly>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="form-group row">
                                                         <label for="preview" class="col-sm-3 col-form-label">Preview Image</label>
                                                         <div class="col-sm-9">
@@ -278,8 +299,8 @@
                         
                         $('#Name').val(data['display_name']);
                         $('#Description').val(data['display_name']);
-                        $('#Quantity').val(data['qty']);
 
+                        var quantity = "";
                         var sizes = "";
                         var price = 0;
                         var sellerId = "";
@@ -293,15 +314,18 @@
                                 price = parseInt(element["asking_price"]);
 
                             sellerId += element["id"] + ":"; 
+                            quantity += element["stock"] + ":";
                         });
 
                         sizes = sizes.substr(0, sizes.length - 1);
                         sellerId = sellerId.substr(0, sellerId.length - 1);
+                        quantity = quantity.substr(0, quantity.length - 1);
 
                         $('#Sizes').val(sizes);
 
                         $('#Price').val(price);
                         $('#SellerId').val(sellerId);
+                        $('#Quantity').val(quantity);
                     }
                 });
             });
