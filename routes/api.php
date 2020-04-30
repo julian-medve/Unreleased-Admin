@@ -30,6 +30,8 @@ Route::get('Banners',           'ApiController@Banners');
 
 Route::get('CustomProducts',    'ApiController@CustomProducts');
 
+Route::get('UpdateCustomProducts',      'ApiController@UpdateCustomProducts');
+
 Route::get('ArtisanCategories', 'ApiController@ArtisanCategories');
 
 Route::get('ArtisanProducts',   'ApiController@ArtisanProducts');

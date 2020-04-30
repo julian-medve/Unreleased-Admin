@@ -164,6 +164,63 @@ class ApiController extends Controller
         return $customs;
     }
 
+
+    public function UpdateCustomProducts(){
+        
+        $customs = CustomProduct::all();
+    
+        foreach($customs as $custom){
+            
+            $client = new \GuzzleHttp\Client();
+        
+            $res = $client->request('GET', Config('Constants.api.custom_products'), 
+                [
+                'headers'   => [ 'Authorization' => Config('Constants.api.custom_products_auth'),],
+                'query'     => [ 'keyword' => $custom->SKU ]
+                ]
+            );
+
+            $responseJson = $res->getBody()->getContents();
+            $responseData = json_decode($responseJson, true);
+            
+            $responseData = $responseData['data']['data'];
+                
+           
+            $quantity = "";
+            $sizes = "";
+            $price = 0;
+            $sellerId = "";
+
+            foreach($responseData[0]["sneakers_sizes"] as $element) {
+                
+                $sizes .= $element["US"] . ":";
+
+                if($price == 0)
+                    $price = intval($element["asking_price"]);
+                else if($price > intval($element["asking_price"]))
+                    $price = intval($element["asking_price"]);
+
+                $sellerId .= $element["id"] . ":"; 
+                $quantity .= $element["stock"] . ":";
+            }
+
+            $sizes = substr($sizes, 0, -1);
+            $sellerId = substr($sellerId, 0, -1);
+            $quantity = substr($quantity, 0, -1);
+
+
+            $custom->SellerId        = $sellerId;
+            $custom->Price           = $price;
+            $custom->Sizes           = $sizes;
+            $custom->Quantity        = $quantity;
+
+            $custom->save();
+        }
+
+        echo "SellerId, Price, Size, Quantity was updated.";
+    }
+
+
     public function ArtisanCategories(){
 
         $ArtisanCategories = ArtisanCategory::all();
