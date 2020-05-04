@@ -147,6 +147,7 @@ class CustomProductController extends Controller
         $CustomProduct->SellerId        = $request->input('SellerId');
         $CustomProduct->Name            = $request->input('Name');
         $CustomProduct->Description     = $request->input('Description');
+        $CustomProduct->Price           = $request->input('Price');
         $CustomProduct->Sizes           = $request->input('Sizes');
         $CustomProduct->Quantity        = $request->input('Quantity');
 
