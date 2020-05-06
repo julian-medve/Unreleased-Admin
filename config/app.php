@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
 
-        // For World countries / provinces / cities
+        // For Social Media Login
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -227,6 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

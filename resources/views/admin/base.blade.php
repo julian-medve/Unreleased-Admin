@@ -14,7 +14,7 @@
     <title>Unreleased Dashboard</title>
 
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- animation css -->

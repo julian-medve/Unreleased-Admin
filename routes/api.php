@@ -15,6 +15,9 @@
 
 Route::post('Login',            'ApiController@Login');
 
+Route::get ( '/redirect/{service}', 'SocialAuthController@redirect' );
+Route::get ( '/callback/{service}', 'SocialAuthController@callback' );
+
 Route::post('Signup',           'ApiController@Signup');
 
 Route::prefix('User')->group(function () {
