@@ -5,10 +5,10 @@
 This source will be hosted on https://admin.unreleased.id
 
 CPanel account for live online server.
-http://unreleased.co.id:2082/
-IP Address: 153.92.10.79
-username : u5082149
-password : mJJ-Y?ZqfZ86
+- http://unreleased.co.id:2082/
+- IP Address: 153.92.10.79
+- username : u5082149
+- password : mJJ-Y?ZqfZ86
 
 And mobile application will be published on google play here.
 
@@ -16,11 +16,15 @@ And mobile application will be published on google play here.
 
 This repository was based on Laravel and bootstrap admin template bought from https://themeforest.net/item/datta-able-bootstrap-admin-template/22954576.
 
+&nbsp;
+
 Mysql Database was used and database connection was configured in .env file in root directory.
 
-database : u5082149_unreleased
-username : u5082149_unreleased
-password : unreleased
+- database : u5082149_unreleased
+- username : u5082149_unreleased
+- password : unreleased
+
+&nbsp;
 
 ### To use this laravel packages to run this backend, first follow commands should be run.
 
@@ -30,6 +34,7 @@ password : unreleased
 > php artisan serve
 
 ### Super administrator credentials
+
 - user email : super@gmail.com
 - password : password
 
