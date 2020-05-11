@@ -18,22 +18,22 @@ This repository was based on Laravel and bootstrap admin template bought from ht
 
 Mysql Database was used and database connection was configured in .env file in root directory.
 
-database  : u5082149_unreleased
+database : u5082149_unreleased
 username : u5082149_unreleased
 password : unreleased
 
-#### To use this laravel packages to run this backend, first follow commands should be run.
+### To use this laravel packages to run this backend, first follow commands should be run.
 
 > composer install
 
-#### To run this backend on local for mobile application like normal laravel application
+### To run this backend on local for mobile application like normal laravel application
 > php artisan serve
 
-#### Super administrator credentials
+### Super administrator credentials
 - user email : super@gmail.com
 - password : password
 
-#### Customer test credntials
+### Customer test credntials
 
 - user email : customer@gmail.com
 - passowrd : password / test / 1234
@@ -41,3 +41,5 @@ password : unreleased
 
 ## API document for Custom Products
 https://docs.google.com/document/d/1lq_gfkGkG1veULjwWU1up966vLGhoJuQGkvcGbwvYEs/edit
+
+### All restful APIs for mobile application are routed by app/Http/Controllers/ApiController.php
