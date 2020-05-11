@@ -10,6 +10,8 @@ And mobile application will be published on google play here.
 
 This repository was based on Laravel and bootstrap admin template bought from https://themeforest.net/item/datta-able-bootstrap-admin-template/22954576.
 
+Mysql Database was used and database connection was configured in .env file in root directory.
+
 #### To use this laravel packages to run this backend, first follow commands should be run.
 > composer install
 #### To run this backend on local for mobile application like normal laravel application
