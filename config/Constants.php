@@ -55,8 +55,13 @@ return [
     ],
 
     'api'       => [
-        'payment_sandbox_server_key'        => 'SB-Mid-server-ImTAwOUnwZOeWh2IDKdmYMHD',
-        'payment_production_server_key'     => 'Mid-server-VYq5gxCuwZFC3kVg0qMROptt',
+        
+        // 'payment_sandbox_server_key'        => 'SB-Mid-server-ImTAwOUnwZOeWh2IDKdmYMHD',
+        // 'payment_production_server_key'     => 'Mid-server-VYq5gxCuwZFC3kVg0qMROptt',
+
+        'payment_sandbox_server_key'        => 'SB-Mid-server-zbM6R_e6TLc73wi725H5xTHC',
+        'payment_production_server_key'     => 'Mid-server-zI2ELz7Z40QM5xwdC9jKWF7p',
+
         'payment_sandbox_end_points'        => 'https://app.sandbox.midtrans.com/snap/v1/transactions',
         'payment_production_end_points'     => 'https://app.midtrans.com/snap/v1/transactions',
 
