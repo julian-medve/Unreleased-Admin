@@ -47,4 +47,4 @@ Mysql Database was used and database connection was configured in .env file in r
 ## API document for Custom Products
 https://docs.google.com/document/d/1lq_gfkGkG1veULjwWU1up966vLGhoJuQGkvcGbwvYEs/edit
 
-### All restful APIs for mobile application are routed by app/Http/Controllers/ApiController.php
+#### All restful APIs for mobile application are routed by app/Http/Controllers/ApiController.php
