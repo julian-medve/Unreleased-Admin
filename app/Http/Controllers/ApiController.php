@@ -486,6 +486,14 @@ class ApiController extends Controller
     public function AllOrders(Request $request)
     {
         $Orders = Order::where('UserId', $request->input('UserId'))->get();
+
+        foreach ($Orders as $key => $value) {
+
+            $Carts = Cart::where('OrderId', $value->Id)->get();
+            if(sizeof($Carts) == 0)
+                $Orders->forget($key);
+        }
+        
         return $Orders;
     }
 
