@@ -25,6 +25,14 @@ class OrderController extends Controller
     public function index()
     {
         $Orders = Order::all();
+
+        foreach ($Orders as $key => $value) {
+
+            $Carts = Cart::where('OrderId', $value->Id)->get();
+            if(sizeof($Carts) == 0)
+                $Orders->forget($key);
+        }
+
         return view('admin.order.index',  compact('Orders'));
     }
 
