@@ -83,6 +83,13 @@
                                                     </div>
 
                                                     <div class="form-group row">
+                                                        <label for="Phone" class="col-sm-3 col-form-label">Phone Number</label>
+                                                        <div class="col-sm-9">
+                                                            <input class="form-control" name="Phone" id="Phone" placeholder="Phone Number" value="{{ $Order->User->phone }}" readonly>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
                                                         <label for="Date" class="col-sm-3 col-form-label">Date</label>
                                                         <div class="col-sm-9">
                                                             <input class="form-control" name="Date" id="Date" placeholder="Date" value="{{ $Order->Date }}" readonly>

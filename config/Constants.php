@@ -65,9 +65,10 @@ return [
         'payment_sandbox_end_points'        => 'https://app.sandbox.midtrans.com/snap/v1/transactions',
         'payment_production_end_points'     => 'https://app.midtrans.com/snap/v1/transactions',
 
-        'custom_products'       => 'https://api.kickavenue.com/nevertoolavish/products',
-        'checkout_products'     => 'https://api.kickavenue.com/nevertoolavish/checkout',
+        'custom_products'       => 'https://develop3.kickavenue.com/nevertoolavish/products',
+        'checkout_products'     => 'https://develop3.kickavenue.com/nevertoolavish/checkout',
         'custom_products_auth'  => 'Basic  dW5yZWxlYXNlZF9jdXN0b21AZ21haWwuY29tOm50bHhraWNrYXZlbnVl',
+        'checkout_products_auth'  => 'Basic  bnRsQGtpY2thdmVudWUuY29tOm50bHhraWNrYXZlbnVl',
     ]
 ];
 

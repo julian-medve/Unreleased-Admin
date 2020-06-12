@@ -75,6 +75,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>User</th>
+                                                        <th>User Phone Number</th>
                                                         <th>Date</th>
                                                         <th>Total Price</th>
                                                         <th>Promotion Code</th>
@@ -89,6 +90,7 @@
                                                     @foreach($Orders as $item)
                                                     <tr>
                                                         <td>{{ $item->User->name }}</td>
+                                                        <td>{{ $item->User->phone }}</td>
                                                         <td>{{ $item->Date }}</td>
                                                         <td>{{ $item->TotalPrice }}</td>
                                                         <td>{{ $item->PromotionCode }}</td>

@@ -534,12 +534,12 @@ class ApiController extends Controller
         $Order->Status          = intval($request->input('Status'));
         $Order->save();
 
-        if($request->input('Status') == 1){
+        if($request->input('Status') == 2){
 
-            $Carts = Cart::where('OrderId', $Order->Id)->where('IsArtisan', false)->get();
+            $Carts = Cart::where('OrderId', $Order->Id)->where('IsArtisan', 0)->get();
             
             foreach($Carts as $cart){
-
+                
                 $customProduct = CustomProduct::find($cart->ShoeId);
                 
                 $sizes = explode(':', $customProduct->Sizes);
@@ -555,7 +555,7 @@ class ApiController extends Controller
         
                 $res = $client->request('POST', Config('Constants.api.checkout_products'), 
                     [
-                    'headers'   => [ 'Authorization'    => Config('Constants.api.custom_products_auth'),],
+                    'headers'   => [ 'Authorization'    => Config('Constants.api.checkout_products_auth'),],
                     'query'     => [ 'user_sell_id'     => $sellerId, 
                                      'quantity'         => $quantity, 
                                      'offer_amount'     => $offer_amount,    
