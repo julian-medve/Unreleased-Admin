@@ -49,7 +49,7 @@ class ApiController extends Controller
         
         if(!is_null($user) && (!$user->is_social && Hash::check( $request->input('password'), $user['password']) || $user->is_social)){
 
-            if(!is_null($user->profile_image)){
+            if(!is_null($user->profile_image) && !empty($user->profile_image)){
 
                 $user->ProfileImageData = base64_encode(file_get_contents($user->profile_image));
                 $arr = explode('/', $user->profile_image);
