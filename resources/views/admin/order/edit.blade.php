@@ -121,7 +121,7 @@
                                                         <label for="Address" class="col-sm-3 col-form-label">Address</label>
                                                         <div class="col-sm-9">
                                                             @if($Order->AddressIndex != 0)
-                                                                <input class="form-control" name="Count" id="Count" placeholder="Count" value="{{ $Order->Address->Alias }}" readonly>
+                                                                <input class="form-control" name="Count" id="Count" placeholder="Count" value="{{ $Order->Address->AddressDetail }}" readonly>
                                                             @endif
                                                         </div>
                                                     </div>

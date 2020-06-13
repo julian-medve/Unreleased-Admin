@@ -97,7 +97,7 @@
                                                         <td>{{ $item->Count }}</td>
 
                                                         @if($item->AddressIndex != 0)
-                                                            <td> {{ $item->Address->Alias }} </td>
+                                                            <td> {{ $item->Address->AddressDetail }} </td>
                                                         @else
                                                             <td></td>
                                                         @endif
