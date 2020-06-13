@@ -74,13 +74,18 @@
                                             <table id="responsive-table-model" class="display table dt-responsive nowrap" style="width:100%">
                                                 <thead>
                                                     <tr>
-                                                        <th>User</th>
-                                                        <th>User Phone Number</th>
+                                                        <th>Customer</th>
+                                                        <th>Receiver</th>
+                                                        <th>Phone</th>
                                                         <th>Date</th>
                                                         <th>Total Price</th>
-                                                        <th>Promotion Code</th>
+                                                        <th>Promotion</th>
                                                         <th>Count</th>
-                                                        <th>Address</th>
+                                                        <th>Country</th>
+                                                        <th>Province</th>
+                                                        <th>City</th>
+                                                        <th>PostalCode</th>
+                                                        <th>AddressDetail</th>
                                                         <th>Order Status</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -90,18 +95,35 @@
                                                     @foreach($Orders as $item)
                                                     <tr>
                                                         <td>{{ $item->User->name }}</td>
-                                                        <td>{{ $item->User->phone }}</td>
+
+                                                        @if($item->AddressIndex != 0)
+                                                            <td> {{ $item->Address->FullName }} </td>
+                                                            <td> {{ $item->Address->Phone }} </td>
+                                                        @else
+                                                            <td></td>
+                                                            <td></td>
+                                                        @endif                                                        
+                                                        
                                                         <td>{{ $item->Date }}</td>
                                                         <td>{{ $item->TotalPrice }}</td>
                                                         <td>{{ $item->PromotionCode }}</td>
                                                         <td>{{ $item->Count }}</td>
 
                                                         @if($item->AddressIndex != 0)
+                                                            <td> {{ $item->Address->Country }} </td>
+                                                            <td> {{ $item->Address->Province }} </td>
+                                                            <td> {{ $item->Address->City }} </td>
+                                                            <td> {{ $item->Address->PostalCode }} </td>
                                                             <td> {{ $item->Address->AddressDetail }} </td>
                                                         @else
                                                             <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
                                                         @endif
 
+                                                        
                                                         <td>
                                                         
                                                         @if($item->Status != 0) 

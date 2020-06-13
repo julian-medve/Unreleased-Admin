@@ -83,9 +83,20 @@
                                                     </div>
 
                                                     <div class="form-group row">
+                                                        <label for="Receiver" class="col-sm-3 col-form-label">Receiver</label>
+                                                        <div class="col-sm-9">
+                                                            @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="Receiver" id="Receiver" placeholder="Receiver" value="{{ $Order->Address->FullName }}" readonly>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
                                                         <label for="Phone" class="col-sm-3 col-form-label">Phone Number</label>
                                                         <div class="col-sm-9">
-                                                            <input class="form-control" name="Phone" id="Phone" placeholder="Phone Number" value="{{ $Order->User->phone }}" readonly>
+                                                        @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="Receiver" id="Receiver" placeholder="Receiver" value="{{ $Order->Address->Phone }}" readonly>
+                                                            @endif
                                                         </div>
                                                     </div>
 
@@ -117,11 +128,48 @@
                                                         </div>
                                                     </div>
 
+                                                    
                                                     <div class="form-group row">
-                                                        <label for="Address" class="col-sm-3 col-form-label">Address</label>
+                                                        <label for="Country" class="col-sm-3 col-form-label">Country</label>
                                                         <div class="col-sm-9">
                                                             @if($Order->AddressIndex != 0)
-                                                                <input class="form-control" name="Count" id="Count" placeholder="Count" value="{{ $Order->Address->AddressDetail }}" readonly>
+                                                                <input class="form-control" name="Country" id="Country" placeholder="Country" value="{{ $Order->Address->Country }}" readonly>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="Province" class="col-sm-3 col-form-label">Province</label>
+                                                        <div class="col-sm-9">
+                                                            @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="Province" id="Province" placeholder="Province" value="{{ $Order->Address->Province }}" readonly>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="City" class="col-sm-3 col-form-label">City</label>
+                                                        <div class="col-sm-9">
+                                                            @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="City" id="City" placeholder="City" value="{{ $Order->Address->City }}" readonly>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="PostalCode" class="col-sm-3 col-form-label">PostalCode</label>
+                                                        <div class="col-sm-9">
+                                                            @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="PostalCode" id="PostalCode" placeholder="PostalCode" value="{{ $Order->Address->PostalCode }}" readonly>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="form-group row">
+                                                        <label for="Address" class="col-sm-3 col-form-label">AddressDetail</label>
+                                                        <div class="col-sm-9">
+                                                            @if($Order->AddressIndex != 0)
+                                                                <input class="form-control" name="AddressDetail" id="AddressDetail" placeholder="AddressDetail" value="{{ $Order->Address->AddressDetail }}" readonly>
                                                             @endif
                                                         </div>
                                                     </div>
